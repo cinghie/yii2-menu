@@ -1,0 +1,26 @@
+{
+    "name": "cinghie/yii2-menu",
+    "description": "Yii2 Menu.",
+    "keywords": ["yii2","yii2 menù","menù yii2"],
+    "homepage": "https://github.com/cinghie/yii2-menu",
+    "type": "yii2-extension",
+    "license": "GNU GPL3",
+    "authors": [
+        {
+            "name": "Gogodigital.it",
+            "email": "info@gogodigital.it",
+            "homepage": "http://www.gogodigital.it/"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+		"cinghie/yii2-multilanguage": "*",
+		"kartik-v/yii2-grid": "*",
+        "kartik-v/yii2-widgets": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "cinghie\\menu\\": ""
+        }
+    }
+}

@@ -22,7 +22,7 @@ use Yii;
  * @property string $title
  * @property string $description
  */
-class Types extends Menus
+class Types extends Menu
 {
     /**
      * @inheritdoc

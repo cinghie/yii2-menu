@@ -14,10 +14,10 @@ namespace cinghie\menu\models;
 
 use Yii;
 use dektrium\user\models\User;
+use yii\db\ActiveRecord;
 
-class Menus extends \yii\db\ActiveRecord
+class Menu extends ActiveRecord
 {
-
     /**
      * Active item setting 'state' = 1
      * @return bool
@@ -65,6 +65,7 @@ class Menus extends \yii\db\ActiveRecord
 
     /**
      * Generate URL alias
+     * @param $name
      * @return string alias
      */
     public function generateAlias($name)

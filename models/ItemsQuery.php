@@ -12,18 +12,20 @@
 
 namespace cinghie\menu\models;
 
+use yii\db\ActiveQuery;
+
 /**
  * This is the ActiveQuery class for [[Items]].
  *
  * @see Items
  */
-class ItemsQuery extends \yii\db\ActiveQuery
+class ItemsQuery extends ActiveQuery
 {
 
     /**
- * @inheritdoc
- * @return Items[]|array
- */
+     * @inheritdoc
+     * @return Items[]|array
+     */
     public function active()
     {
         $this->andWhere('[[id]]!=1');

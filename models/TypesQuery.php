@@ -12,14 +12,15 @@
 
 namespace cinghie\menu\models;
 
+use yii\db\ActiveQuery;
+
 /**
  * This is the ActiveQuery class for [[Types]].
  *
  * @see Types
  */
-class TypesQuery extends \yii\db\ActiveQuery
+class TypesQuery extends ActiveQuery
 {
-
     /**
      * @inheritdoc
      * @return Types[]|array

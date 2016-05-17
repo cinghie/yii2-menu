@@ -33,7 +33,7 @@ $this->registerJs('
             } else if(selectedId.length>1){
                 alert("'.Yii::t("essentials", "Select only 1 item").'");
             } else {
-                var url = "'.Url::to(['types/update']).'?id="+selectedId[0];
+                var url = "'.Url::to(['/menu/types/update']).'?id="+selectedId[0];
                 window.location.href= url;
             }
         });
@@ -48,7 +48,7 @@ $this->registerJs('
                 if (choose == true) {
                     $.ajax({
                         type: \'POST\',
-                        url : "'.Url::to(['types/deletemultiple']).'?id="+selectedId,
+                        url : "'.Url::to(['/menu/types/deletemultiple']).'?id="+selectedId,
                         data : {ids: selectedId},
                         success : function() {
                             $.pjax.reload({container:"#w2"});
@@ -88,7 +88,7 @@ $this->registerJs('
                     'format' => 'html',
                     'hAlign' => 'center',
                     'value' => function ($model) {
-                        $url = urldecode(Url::toRoute(['types/update', 'id' => $model->id]));
+                        $url = urldecode(Url::toRoute(['/menu/types/update', 'id' => $model->id]));
                         return Html::a($model->menutype,$url);
                     }
                 ],

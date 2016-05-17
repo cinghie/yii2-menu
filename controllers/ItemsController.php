@@ -209,7 +209,7 @@ class ItemsController extends Controller
     /**
      * Change Items state: active or inactive
      * @param int $id
-     * @return Response
+     * @return mixed
      */
     public function actionChangestate($id)
     {

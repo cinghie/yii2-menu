@@ -33,7 +33,7 @@ $this->registerJs('
             } else if(selectedId.length>1){
                 alert("'.Yii::t("essentials", "Select only 1 item").'");
             } else {
-                var url = "'.Url::to(['items/update']).'?id="+selectedId[0];
+                var url = "'.Url::to(['/menu/items/update']).'?id="+selectedId[0];
                 window.location.href= url;
             }
         });
@@ -45,7 +45,7 @@ $this->registerJs('
             } else {
                 $.ajax({
                     type: \'POST\',
-                    url : "'.Url::to(['items/activemultiple']).'?id="+selectedId,
+                    url : "'.Url::to(['/menu/items/activemultiple']).'?id="+selectedId,
                     data : {ids: selectedId},
                     success : function() {
                         $.pjax.reload({container:"#w2"});
@@ -61,7 +61,7 @@ $this->registerJs('
             } else {
                 $.ajax({
                     type: \'POST\',
-                    url : "'.Url::to(['items/deactivemultiple']).'?id="+selectedId,
+                    url : "'.Url::to(['/menu/items/deactivemultiple']).'?id="+selectedId,
                     data : {ids: selectedId},
                     success : function() {
                         $.pjax.reload({container:"#w2"});
@@ -80,7 +80,7 @@ $this->registerJs('
                 if (choose == true) {
                     $.ajax({
                         type: \'POST\',
-                        url : "'.Url::to(['items/deletemultiple']).'?id="+selectedId,
+                        url : "'.Url::to(['/menu/items/deletemultiple']).'?id="+selectedId,
                         data : {ids: selectedId},
                         success : function() {
                             $.pjax.reload({container:"#w2"});
@@ -120,7 +120,7 @@ $this->registerJs('
                     'format' => 'html',
                     'hAlign' => 'center',
                     'value' => function ($model) {
-                        $url = urldecode(Url::toRoute(['items/update', 'id' => $model->id]));
+                        $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $model->id]));
                         return Html::a($model->title,$url);
                     }
                 ],
@@ -154,7 +154,7 @@ $this->registerJs('
                     'format' => 'html',
                     'hAlign' => 'center',
                     'value' => function ($data) {
-                        $url = urldecode(Url::toRoute(['items/update', 'id' => $data->parentid]));
+                        $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $data->parentid]));
                         $mid = isset($data->parentid) ? $data->parentid : "";
 
                         if($mid!="") {

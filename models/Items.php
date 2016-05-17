@@ -31,9 +31,8 @@ use Yii;
  *
  * @property Types $menutype
  */
-class Items extends Menus
+class Items extends Menu
 {
-
     /**
      * @inheritdoc
      */

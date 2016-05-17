@@ -32,7 +32,7 @@ $ php yii migrate/up --migrationPath=@vendor/cinghie/yii2-menu/migrations
 
 ### 2. Install Yii2 Multilanguage
 
-
+https://github.com/cinghie/yii2-multilanguage
 
 ### 3. Set configuration file
 
@@ -63,6 +63,7 @@ Changelog
 --------------
 
 <ul>
+  <li>Version 0.8.1 - Purge code</li>
   <li>Version 0.8.0 - Initial Releases</li>
 </ul>
 

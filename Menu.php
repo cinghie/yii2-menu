@@ -19,6 +19,8 @@ class Menu extends \yii\base\Module
     public $controllerNamespace = 'cinghie\menu\controllers';
 
     public $menuRoles = ['admin'];
+    
+    public $showTitles = true;
 
     /**
      * @inheritdoc

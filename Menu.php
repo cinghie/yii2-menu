@@ -18,8 +18,12 @@ class Menu extends \yii\base\Module
 {
     public $controllerNamespace = 'cinghie\menu\controllers';
 
+    // Menu Rules
     public $menuRoles = ['admin'];
     
+    public $showTitles = true;
+
+    // Show Titles in the views
     public $showTitles = true;
 
     /**

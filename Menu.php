@@ -20,8 +20,6 @@ class Menu extends \yii\base\Module
 
     // Menu Rules
     public $menuRoles = ['admin'];
-    
-    public $showTitles = true;
 
     // Show Titles in the views
     public $showTitles = true;

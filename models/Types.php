@@ -13,6 +13,11 @@
 namespace cinghie\menu\models;
 
 use Yii;
+use cinghie\traits\StateTrait;
+use cinghie\traits\TitleAliasTrait;
+use cinghie\traits\UserHelpersTrait;
+use cinghie\traits\ViewsHelpersTrait;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%menu_types}}".
@@ -22,8 +27,10 @@ use Yii;
  * @property string $title
  * @property string $description
  */
-class Types extends Menu
+class Types extends ActiveRecord
 {
+    use TitleAliasTrait, StateTrait, UserHelpersTrait, ViewsHelpersTrait;
+
     /**
      * @inheritdoc
      */
@@ -54,7 +61,6 @@ class Types extends Menu
         return [
             'id' => Yii::t('menu', 'ID'),
             'menutype' => Yii::t('menu', 'Menutype'),
-            'title' => Yii::t('menu', 'Title'),
             'description' => Yii::t('menu', 'Description'),
         ];
     }

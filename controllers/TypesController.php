@@ -26,6 +26,7 @@ use yii\web\NotFoundHttpException;
  */
 class TypesController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -57,7 +58,9 @@ class TypesController extends Controller
 
     /**
      * Lists all Types models.
+     *
      * @return mixed
+     * @throws \yii\base\InvalidParamException
      */
     public function actionIndex()
     {
@@ -73,7 +76,9 @@ class TypesController extends Controller
     /**
      * Creates a new Types model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
+     * @throws \yii\base\InvalidParamException
      */
     public function actionCreate()
     {
@@ -85,7 +90,9 @@ class TypesController extends Controller
             Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been created!'));
 
             return $this->redirect(['index']);
+
         } else {
+
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -95,8 +102,10 @@ class TypesController extends Controller
     /**
      * Updates an existing Types model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param string $id
      * @return mixed
+     * @throws \yii\base\InvalidParamException
      */
     public function actionUpdate($id)
     {
@@ -108,7 +117,9 @@ class TypesController extends Controller
             Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been updated!'));
 
             return $this->redirect(['index']);
+
         } else {
+
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -118,6 +129,7 @@ class TypesController extends Controller
     /**
      * Deletes an existing Types model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param string $id
      * @return mixed
      */
@@ -146,8 +158,7 @@ class TypesController extends Controller
         {
             $model = $this->findModel($id);
 
-            if ($model->delete())
-            {
+            if ($model->delete()) {
                 Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been deleted'));
             } else {
                 Yii::$app->session->setFlash('error', Yii::t('menu', 'Error deleting Menu Type'));
@@ -158,6 +169,7 @@ class TypesController extends Controller
     /**
      * Finds the Types model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param string $id
      * @return Types the loaded model
      * @throws NotFoundHttpException if the model cannot be found

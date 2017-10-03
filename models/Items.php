@@ -13,6 +13,13 @@
 namespace cinghie\menu\models;
 
 use Yii;
+use cinghie\traits\AccessTrait;
+use cinghie\traits\LanguageTrait;
+use cinghie\traits\StateTrait;
+use cinghie\traits\TitleAliasTrait;
+use cinghie\traits\UserHelpersTrait;
+use cinghie\traits\ViewsHelpersTrait;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%menu_items}}".
@@ -31,8 +38,11 @@ use Yii;
  *
  * @property Types $menutype
  */
-class Items extends Menu
+class Items extends ActiveRecord
 {
+
+    use AccessTrait, LanguageTrait, TitleAliasTrait, StateTrait, UserHelpersTrait, ViewsHelpersTrait;
+
     /**
      * @inheritdoc
      */
@@ -48,13 +58,9 @@ class Items extends Menu
     {
         return [
             [['menutypeid', 'title', 'language', 'link'], 'required'],
-            [['menutypeid', 'parentid', 'state'], 'integer'],
+            [['menutypeid', 'parentid'], 'integer'],
             [['link'], 'string', 'max' => 1024],
-            [['title', 'alias'], 'string', 'max' => 255],
-            [['access'], 'string', 'max' => 64],
-            [['language'], 'string', 'max' => 7],
             [['params','linkOptions'], 'string'],
-            [['alias'], 'unique'],
             [['menutypeid'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutypeid' => 'id']],
         ];
     }
@@ -67,12 +73,7 @@ class Items extends Menu
         return [
             'id' => Yii::t('menu', 'ID'),
             'menutypeid' => Yii::t('menu', 'Menutypeid'),
-            'title' => Yii::t('menu', 'Title'),
-            'alias' => Yii::t('menu', 'Alias'),
             'parentid' => Yii::t('menu', 'Parentid'),
-            'state' => Yii::t('menu', 'State'),
-            'access' => Yii::t('menu', 'Access'),
-            'language' => Yii::t('menu', 'Language'),
             'link' => Yii::t('menu', 'Link'),
             'linkOptions' => Yii::t('menu', 'Link Options'),
             'params' => Yii::t('menu', 'Params'),
@@ -80,7 +81,9 @@ class Items extends Menu
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Return Types Select2
+     *
+     * @return array[]
      */
     public function getTypesSelect2()
     {
@@ -95,7 +98,9 @@ class Items extends Menu
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Return Items Select2
+     *
+     * @return array[]
      */
     public function getItemsSelect2()
     {

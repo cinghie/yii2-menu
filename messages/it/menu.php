@@ -45,8 +45,6 @@ return array(
     'Type' => 'Tipo',
     'Unactived' => 'Non Attivo',
     'Update' => 'Modifica',
-    'Update Menu Items' => 'Aggiorna Voce di Menu',
-    'Update Menu Types' => 'Aggiorna Tipo di Menu',
-    'Userid' => 'Utente',
-    'Value' => 'Valore',
+    'Update Menu Items: ' => 'Modifica Voce di Menu: ',
+    'Update Menu Types: ' => 'Modifica Tipo di Menu: ',
 );

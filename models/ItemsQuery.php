@@ -26,28 +26,6 @@ class ItemsQuery extends ActiveQuery
      * @inheritdoc
      * @return Items[]|array
      */
-    public function active()
-    {
-        $this->andWhere('[[id]]!=1');
-        $this->andWhere('[[state]]=1');
-        return $this;
-    }
-
-    /**
-     * @inheritdoc
-     * @return Items[]|array
-     */
-    public function inactive()
-    {
-        $this->andWhere('[[id]]!=1');
-        $this->andWhere('[[state]]=0');
-        return $this;
-    }
-
-    /**
-     * @inheritdoc
-     * @return Items[]|array
-     */
     public function findByMenuType($id)
     {
         $this->andWhere('[[id]]!=1');

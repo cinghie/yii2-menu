@@ -15,84 +15,51 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
-// Render Yii2-Articles Menu
-echo Yii::$app->view->renderFile('@vendor/cinghie/yii2-menu/views/default/_menu_items.php');
-
 $this->title = Yii::t('menu', 'Menu Items');
 $this->params['breadcrumbs'][] = $this->title;
 
 // Register action buttons js
-$this->registerJs('
-    $(document).ready(function()
-    {
-        $("a.btn-update").click(function() {
-            var selectedId = $("#w1").yiiGridView("getSelectedRows");
-
-            if(selectedId.length == 0) {
-                alert("'.Yii::t("essentials", "Select at least one item").'");
-            } else if(selectedId.length>1){
-                alert("'.Yii::t("essentials", "Select only 1 item").'");
-            } else {
-                var url = "'.Url::to(['/menu/items/update']).'?id="+selectedId[0];
-                window.location.href= url;
-            }
-        });
-        $("a.btn-active").click(function() {
-            var selectedId = $("#w1").yiiGridView("getSelectedRows");
-
-            if(selectedId.length == 0) {
-                alert("'.Yii::t("essentials", "Select at least one item").'");
-            } else {
-                $.ajax({
-                    type: \'POST\',
-                    url : "'.Url::to(['/menu/items/activemultiple']).'?id="+selectedId,
-                    data : {ids: selectedId},
-                    success : function() {
-                        $.pjax.reload({container:"#w1"});
-                    }
-                });
-            }
-        });
-        $("a.btn-deactive").click(function() {
-            var selectedId = $("#w1").yiiGridView("getSelectedRows");
-
-            if(selectedId.length == 0) {
-                alert("'.Yii::t("essentials", "Select at least one item").'");
-            } else {
-                $.ajax({
-                    type: \'POST\',
-                    url : "'.Url::to(['/menu/items/deactivemultiple']).'?id="+selectedId,
-                    data : {ids: selectedId},
-                    success : function() {
-                        $.pjax.reload({container:"#w1"});
-                    }
-                });
-            }
-        });
-        $("a.btn-delete").click(function() {
-            var selectedId = $("#w1").yiiGridView("getSelectedRows");
-
-            if(selectedId.length == 0) {
-                alert("'.Yii::t("essentials", "Select at least one item").'");
-            } else {
-                var choose = confirm("'.Yii::t("essentials", "Do you want delete selected items?").'");
-
-                if (choose == true) {
-                    $.ajax({
-                        type: \'POST\',
-                        url : "'.Url::to(['/menu/items/deletemultiple']).'?id="+selectedId,
-                        data : {ids: selectedId},
-                        success : function() {
-                            $.pjax.reload({container:"#w1"});
-                        }
-                    });
-                }
-            }
-        });
-    });
+$this->registerJs('$(document).ready(function()
+    {'
+    .$searchModel->getUpdateButtonJavascript('#w1')
+    .$searchModel->getDeleteButtonJavascript('#w1')
+    .$searchModel->getActiveButtonJavascript('#w1')
+    .$searchModel->getDeactiveButtonJavascript('#w1').
+    '});
 ');
 
 ?>
+
+<div class="row">
+
+    <!-- action menu -->
+    <div class="col-md-6">
+
+        <?= Yii::$app->view->renderFile('@vendor/cinghie/yii2-menu/views/default/_menu.php'); ?>
+
+    </div>
+
+    <!-- action buttons -->
+    <div class="col-md-6">
+
+        <?= $searchModel->getDeactiveButton() ?>
+
+        <?= $searchModel->getActiveButton() ?>
+
+        <?= $searchModel->getResetButton() ?>
+
+        <?= $searchModel->getDeleteButton() ?>
+
+        <?= $searchModel->getUpdateButton() ?>
+
+        <?= $searchModel->getCreateButton() ?>
+
+    </div>
+
+</div>
+
+<div class="separator"></div>
+
 <div class="menu-items-index">
 
     <?php if(Yii::$app->getModule('essentials')->showTitles): ?>
@@ -142,10 +109,9 @@ $this->registerJs('
                     'attribute' => 'menutypeid',
                     'format' => 'html',
                     'hAlign' => 'center',
-                    'value' => function ($data) {
-                        $url = urldecode(Url::toRoute(['types/update', 'id' => $data->menutypeid]));
-
-                        return Html::a($data->menutype->title,$url);
+                    'value' => function ($model) {
+                        $url = urldecode(Url::toRoute(['types/update', 'id' => $model->menutypeid]));
+                        return Html::a($model->menutype->title,$url);
                     },
                     'width' => '10%',
                 ],
@@ -153,12 +119,12 @@ $this->registerJs('
                     'attribute' => 'parentid',
                     'format' => 'html',
                     'hAlign' => 'center',
-                    'value' => function ($data) {
-                        $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $data->parentid]));
-                        $mid = isset($data->parentid) ? $data->parentid : "";
+                    'value' => function ($model) {
+                        $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $model->parentid]));
+                        $mid = isset($model->parentid) ? $model->parentid : "";
 
                         if($mid!="") {
-                            return Html::a($data->parent->title,$url);
+                            return Html::a($model->parent->title,$url);
                         } else {
                             return Yii::t('articles', 'Nobody');
                         }
@@ -167,8 +133,12 @@ $this->registerJs('
                 ],
                 [
                     'attribute' => 'access',
-                    'width' => '8%',
+                    'format' => 'html',
                     'hAlign' => 'center',
+                    'value' => function ($model) {
+                        /** @var $model cinghie\articles\models\Items */
+                        return $model->getAccessGridView();
+                    }
                 ],
                 [
                     'attribute' => 'language',
@@ -179,17 +149,10 @@ $this->registerJs('
                     'attribute' => 'state',
                     'format' => 'raw',
                     'hAlign' => 'center',
-                    'width' => '4%',
+                    'width' => '5%',
                     'value' => function ($model) {
-                        if($model->state) {
-                            return Html::a('<span class="glyphicon glyphicon-ok text-success"></span>', ['changestate', 'id' => $model->id], [
-                                'data-method' => 'post',
-                            ]);
-                        } else {
-                            return Html::a('<span class="glyphicon glyphicon-remove text-danger"></span>', ['changestate', 'id' => $model->id], [
-                                'data-method' => 'post',
-                            ]);
-                        }
+                        /** @var $model cinghie\articles\models\Items */
+                        return $model->getStateGridView();
                     }
                 ],
                 [
@@ -203,25 +166,6 @@ $this->registerJs('
             'panel' => [
                 'heading'    => '<h3 class="panel-title"><i class="fa fa-list"></i></h3>',
                 'type'       => 'success',
-                'before'     => '<span style="margin-right: 5px;">'.
-                    Html::a('<i class="glyphicon glyphicon-plus"></i> '.Yii::t('menu', 'New'),
-                        ['create'], ['class' => 'btn btn-success']
-                    ).'</span><span style="margin-right: 5px;">'.
-                    Html::a('<i class="glyphicon glyphicon-pencil"></i> '.Yii::t('menu', 'Update'),
-                        '#', ['class' => 'btn btn-update btn-warning']
-                    ).'</span><span style="margin-right: 5px;">'.
-                    Html::a('<i class="glyphicon glyphicon-minus-sign"></i> '.Yii::t('menu', 'Delete'),
-                        '#', ['class' => 'btn btn-delete btn-danger']
-                    ).'</span><span style="float: right; margin-right: 5px;">'.
-                    Html::a('<i class="glyphicon glyphicon-remove"></i> '.Yii::t('menu', 'Deactive'),
-                        '#', ['class' => 'btn btn-deactive btn-danger']
-                    ).'</span><span style="float: right; margin-right: 5px;">'.
-                    Html::a('<i class="glyphicon glyphicon-ok"></i> '.Yii::t('menu', 'Active'),
-                        ['#'], ['class' => 'btn btn-active btn-success']
-                    ).'</span>',
-                'after' => Html::a(
-                    '<i class="glyphicon glyphicon-repeat"></i> '.Yii::t('menu', 'Reset Grid'), ['index'], ['class' => 'btn btn-info']
-                ),
                 'showFooter' => false
             ],
         ]); ?>

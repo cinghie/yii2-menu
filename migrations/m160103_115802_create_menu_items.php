@@ -19,7 +19,7 @@ class m160103_115802_create_menu_items extends Migration
             'access' => $this->string(64)->notNull()->defaultValue('public'),
             'params' => $this->text(),
             'linkOptions' => $this->text(),
-            'language' => $this->string(7)->notNull()->defaultValue('All'),
+            'language' => $this->string(7)->notNull()->defaultValue('all'),
         ]);
 
         // Add Foreign Key

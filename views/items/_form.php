@@ -24,107 +24,92 @@ use yii\helpers\Html;
 
         <div class="col-lg-12">
 
-            <div class="col-lg-4">
+            <div class="row">
 
-                <?= $form->field($model, 'title', [
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-plus"></i>'
-                        ]
-                    ]
-                ])->textInput(['maxlength' => true]) ?>
+                <div class="col-md-6">
 
-                <?= $form->field($model, 'menutypeid')->widget(Select2::classname(), [
-                    'data' => $model->getTypesSelect2(),
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="fa fa-list"></i>'
-                        ]
-                    ],
-                ]); ?>
+                    <?= Yii::$app->view->renderFile('@vendor/cinghie/yii2-menu/views/default/_menu.php') ?>
 
-                <?= $form->field($model, 'link', [
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-link"></i>'
-                        ]
-                    ]
-                ])->textInput(['maxlength' => true]) ?>
+                </div>
 
-                <?= $form->field($model, 'language')->widget(Select2::classname(), [
-                    'data' => $model->getLanguages(),
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-globe"></i>'
-                        ]
-                    ],
-                ]); ?>
+                <div class="col-md-6">
+
+                    <?= $model->getExitButton() ?>
+
+                    <?= $model->getCancelButton() ?>
+
+                    <?= $model->getSaveButton() ?>
+
+                </div>
+
+                <div class="separator"></div>
 
             </div>
 
-            <div class="col-lg-4">
+            <div class="row">
 
-                <?= $form->field($model, 'alias', [
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-bookmark"></i>'
+                <div class="col-lg-4">
+
+                    <?= $model->getTitleWidget($form) ?>
+
+                    <?= $form->field($model, 'menutypeid')->widget(Select2::classname(), [
+                        'data' => $model->getTypesSelect2(),
+                        'addon' => [
+                            'prepend' => [
+                                'content'=>'<i class="fa fa-list"></i>'
+                            ]
+                        ],
+                    ]); ?>
+
+                    <?= $form->field($model, 'link', [
+                        'addon' => [
+                            'prepend' => [
+                                'content'=>'<i class="glyphicon glyphicon-link"></i>'
+                            ]
                         ]
-                    ]
-                ])->textInput(['maxlength' => true]) ?>
+                    ])->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'parentid')->widget(Select2::classname(), [
-                    'data' => $model->getItemsSelect2(),
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-folder-open"></i>'
+                    <?= $model->getLanguageWidget($form) ?>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <?= $model->getAliasWidget($form) ?>
+
+                    <?= $form->field($model, 'parentid')->widget(Select2::classname(), [
+                        'data' => $model->getItemsSelect2(),
+                        'addon' => [
+                            'prepend' => [
+                                'content'=>'<i class="glyphicon glyphicon-folder-open"></i>'
+                            ]
+                        ],
+                    ]); ?>
+
+                    <?= $form->field($model, 'params', [
+                        'addon' => [
+                            'prepend' => [
+                                'content'=>'<i class="fa fa-filter"></i>'
+                            ]
                         ]
-                    ],
-                ]); ?>
+                    ])->textarea(['rows' => 4]) ?>
 
-                <?= $form->field($model, 'params', [
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="fa fa-filter"></i>'
-                        ]
-                    ]
-                ])->textarea(['rows' => 4]) ?>
+                </div>
 
-            </div>
+                <div class="col-lg-4">
 
-            <div class="col-lg-4">
+                    <?= $model->getStateWidget($form) ?>
 
-                <?= $form->field($model, 'state')->widget(Select2::classname(), [
-                    'data' => $model->getStates(),
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-check"></i>'
-                        ]
-                    ],
-                ]); ?>
+                    <?= $model->getAccessWidget($form) ?>
 
-                <?= $form->field($model, 'access')->widget(Select2::classname(), [
-                    'data' => $model->getRoles(),
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-log-in"></i>'
-                        ]
-                    ],
-                ]); ?>
+                    <?= $form->field($model, 'linkOptions', [
+                        'addon' => [
+                            'prepend' => [
+                                'content'=>'<i class="fa fa-external-link-square"></i>'
+                            ]
+                        ],
+                    ])->textarea(['rows' => 4]) ?>
 
-                <?= $form->field($model, 'linkOptions', [
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="fa fa-external-link-square"></i>'
-                        ]
-                    ],
-                ])->textarea(['rows' => 4]) ?>
-
-            </div>
-
-            <div class="col-lg-12">
-
-                <div class="form-group">
-                    <?= Html::submitButton($model->isNewRecord ? Yii::t('menu', 'Create') : Yii::t('menu', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                 </div>
 
             </div>

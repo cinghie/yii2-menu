@@ -12,8 +12,8 @@
 
 namespace cinghie\menu\widgets;
 
-use cinghie\menu\models\Items;
 use Yii;
+use cinghie\menu\models\Items;
 use yii\bootstrap\Nav;
 use yii\bootstrap\Widget;
 use yii\helpers\Url;
@@ -27,17 +27,26 @@ class NavMenuItems extends Widget
     public $childOrderBy;
     public $childOrderType;
     public $options;
+
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
+
         // set default Orderby
         if($this->menuOrderBy == "") { $this->menuOrderBy = "id"; }
+
         // set default Orderby
         if($this->menuOrderType == "") { $this->menuOrderType = SORT_ASC; }
+
         // set default Orderby
         if($this->childOrderBy == "") { $this->childOrderBy = "id"; }
+
         // set default Orderby
         if($this->childOrderType == "") { $this->childOrderType = SORT_ASC; }
+
         if($this->menuId === null)
         {
             $this->options   = ['class' => 'navbar-nav navbar-right'];
@@ -48,6 +57,7 @@ class NavMenuItems extends Widget
                 ['label' => 'Login', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
                 ['label' => 'Logout', 'url' => ['/site/logout'], 'visible' => !Yii::$app->user->isGuest],
             ];
+
         } else {
             $menuItems = new Items();
             $menuItems = $menuItems->find()->findByMenuType($this->menuId)->orderBy([$this->menuOrderBy => $this->menuOrderType])->all();
@@ -76,20 +86,25 @@ class NavMenuItems extends Widget
             }
         }
     }
+
     /*
-     * return
+     * Check menu item language
+     *
+     * @return boolean
      */
     private function checkLanguageMenu($lang)
     {
-        if($lang == Yii::$app->language || $lang == 'All')
-        {
+        if($lang == Yii::$app->language || $lang == 'all' || $lang == 'All') {
             return true;
         } else {
             return false;
         }
     }
+
     /*
-     * return single item childs
+     * Create single item childs
+     *
+     * @return array
      */
     private function createMenuItemChilds($menuItems)
     {
@@ -109,8 +124,11 @@ class NavMenuItems extends Widget
         }
         return $array;
     }
+
     /*
-     * return single menu item with childs
+     * Create single menu item with childs
+     *
+     * @return mixed
      */
     private function createMenuItem($menuItem,$childs = [])
     {
@@ -134,8 +152,11 @@ class NavMenuItems extends Widget
             'visible' => $this->getVisibility($menuItem->access)
         ];
     }
+
     /*
-     * return url from $params
+     * Create url from $params
+     *
+     * @return Url
      */
     private function getUrl($link,$params)
     {
@@ -150,8 +171,11 @@ class NavMenuItems extends Widget
         }
         return Url::to($link);
     }
+
     /*
-     * return array of $linkOptions
+     * Get array of $linkOptions
+     *
+     * @return array
      */
     private function getLinkOptions($linkOptions)
     {
@@ -167,8 +191,11 @@ class NavMenuItems extends Widget
         }
         return $arrayOptions;
     }
+
     /*
-     * return menu item visibility
+     * Get menu item visibility
+     *
+     * @return mixed
      */
     private function getVisibility($access)
     {
@@ -187,6 +214,10 @@ class NavMenuItems extends Widget
                 return Yii::$app->user->can($access);
         }
     }
+
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         return Nav::widget([
@@ -194,4 +225,5 @@ class NavMenuItems extends Widget
             'items' => $this->menuItems
         ]);
     }
+
 }

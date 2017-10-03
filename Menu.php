@@ -16,6 +16,7 @@ use Yii;
 
 class Menu extends \yii\base\Module
 {
+    // Controller Namespace
     public $controllerNamespace = 'cinghie\menu\controllers';
 
     // Menu Rules
@@ -46,4 +47,5 @@ class Menu extends \yii\base\Module
             ];
         }
     }
+
 }

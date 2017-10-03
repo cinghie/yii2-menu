@@ -26,6 +26,7 @@ use yii\web\NotFoundHttpException;
  */
 class ItemsController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -57,7 +58,9 @@ class ItemsController extends Controller
 
     /**
      * Lists all Items models.
+     *
      * @return mixed
+     * @throws \yii\base\InvalidParamException
      */
     public function actionIndex()
     {
@@ -73,7 +76,9 @@ class ItemsController extends Controller
     /**
      * Creates a new Items model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
+     * @throws \yii\base\InvalidParamException
      */
     public function actionCreate()
     {
@@ -84,7 +89,7 @@ class ItemsController extends Controller
             // If alias is not set, generate it
             if($model->alias == "")
             {
-                if($model->language == "All") {
+                if($model->language === "all") {
                     $model->alias = $model->generateAlias($model->title);
                 } else {
                     $model->alias = $model->generateAlias($model->title)."-".$model->language;
@@ -117,8 +122,10 @@ class ItemsController extends Controller
     /**
      * Updates an existing Items model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
      * @return mixed
+     * @throws \yii\base\InvalidParamException
      */
     public function actionUpdate($id)
     {
@@ -129,7 +136,7 @@ class ItemsController extends Controller
             // If alias is not set, generate it
             if($model->alias == "")
             {
-                if($model->language == "All") {
+                if($model->language === "all") {
                     $model->alias = $model->generateAlias($model->title);
                 } else {
                     $model->alias = $model->generateAlias($model->title)."-".$model->language;
@@ -162,7 +169,8 @@ class ItemsController extends Controller
 
     /**
      * Deletes an existing Items model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * If deletion is successful, the browser will be redirected to the 'index' page
+     *
      * @param integer $id
      * @return mixed
      */
@@ -191,8 +199,8 @@ class ItemsController extends Controller
 
         foreach ($ids as $id)
         {
-            if ($id != 1)
-            {
+            if ($id != 1) {
+
                 $model = $this->findModel($id);
 
                 if ($model->delete()) {
@@ -200,6 +208,7 @@ class ItemsController extends Controller
                 } else {
                     Yii::$app->session->setFlash('error', Yii::t('menu', 'Error deleting Menu Item'));
                 }
+
             } else {
                 Yii::$app->session->setFlash('error', Yii::t('menu', 'You can\'t delete this item' ));
             }
@@ -208,6 +217,7 @@ class ItemsController extends Controller
 
     /**
      * Change Items state: active or inactive
+     *
      * @param int $id
      * @return mixed
      */
@@ -216,7 +226,7 @@ class ItemsController extends Controller
         $model = $this->findModel($id);
 
         if($model->state) {
-            $model->inactive();
+            $model->deactive();
             Yii::$app->getSession()->setFlash('warning', Yii::t('menu', 'Menu Item inactived'));
         } else {
             $model->active();
@@ -247,6 +257,8 @@ class ItemsController extends Controller
             if(!$model->state) {
                 $model->active();
                 Yii::$app->getSession()->setFlash('success', Yii::t('menu', 'Rest API actived'));
+            } else {
+                throw new ForbiddenHttpException;
             }
         }
     }
@@ -270,8 +282,10 @@ class ItemsController extends Controller
             $model = $this->findModel($id);
 
             if($model->state) {
-                $model->inactive();
+                $model->deactive();
                 Yii::$app->getSession()->setFlash('warning', Yii::t('menu', 'Rest API inactived'));
+            } else {
+                throw new ForbiddenHttpException;
             }
         }
     }
@@ -279,6 +293,7 @@ class ItemsController extends Controller
     /**
      * Finds the Items model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param integer $id
      * @return Items the loaded model
      * @throws NotFoundHttpException if the model cannot be found
@@ -291,4 +306,5 @@ class ItemsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

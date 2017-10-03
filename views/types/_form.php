@@ -23,36 +23,48 @@ use yii\helpers\Html;
 
         <div class="col-lg-12">
 
-            <div class="col-lg-6">
+            <div class="row">
 
-                <?= $form->field($model, 'menutype', [
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-plus"></i>'
-                        ]
-                    ],
-                ])->textInput(['maxlength' => true]) ?>
+                <div class="col-md-6">
 
-                <?= $form->field($model, 'title', [
-                    'addon' => [
-                        'prepend' => [
-                            'content'=>'<i class="glyphicon glyphicon-pencil"></i>'
-                        ]
-                    ]
-                ])->textInput(['maxlength' => true]) ?>
+                    <?= Yii::$app->view->renderFile('@vendor/cinghie/yii2-menu/views/default/_menu.php') ?>
 
-            </div>
+                </div>
 
-            <div class="col-lg-6">
+                <div class="col-md-6">
 
-                <?= $form->field($model, 'description')->textArea(['maxlength' => true, 'rows' => '4']) ?>
+                    <?= $model->getExitButton() ?>
+
+                    <?= $model->getCancelButton() ?>
+
+                    <?= $model->getSaveButton() ?>
+
+                </div>
+
+                <div class="separator"></div>
 
             </div>
 
-            <div class="col-lg-12">
+            <div class="row">
 
-                <div class="form-group">
-                    <?= Html::submitButton($model->isNewRecord ? Yii::t('menu', 'Create') : Yii::t('menu', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                <div class="col-lg-6">
+
+                    <?= $model->getTitleWidget($form) ?>
+
+                    <?= $form->field($model, 'menutype', [
+                        'addon' => [
+                            'prepend' => [
+                                'content'=>'<i class="glyphicon glyphicon-plus"></i>'
+                            ]
+                        ],
+                    ])->textInput(['maxlength' => true]) ?>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <?= $form->field($model, 'description')->textArea(['maxlength' => true, 'rows' => '4']) ?>
+
                 </div>
 
             </div>

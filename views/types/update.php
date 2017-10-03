@@ -12,7 +12,7 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::t('menu', 'Update {modelClass}: ', [
+$this->title = Yii::t('menu', 'Update Menu Types: ', [
     'modelClass' => 'Menu Types',
 ]) . ' ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('menu', 'Menu Types'), 'url' => ['index']];

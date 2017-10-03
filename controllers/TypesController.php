@@ -21,14 +21,12 @@ use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
-/**
- * TypesController implements the CRUD actions for Types model.
- */
 class TypesController extends Controller
 {
 
     /**
      * @inheritdoc
+     * @throws \yii\web\ForbiddenHttpException
      */
     public function behaviors()
     {
@@ -87,7 +85,7 @@ class TypesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
             // Set Success Message
-            Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been created!'));
+            Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been created'));
 
             return $this->redirect(['index']);
 
@@ -105,6 +103,7 @@ class TypesController extends Controller
      *
      * @param string $id
      * @return mixed
+     * @throws \yii\web\NotFoundHttpException
      * @throws \yii\base\InvalidParamException
      */
     public function actionUpdate($id)
@@ -114,7 +113,7 @@ class TypesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save())
         {
             // Set Success Message
-            Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been updated!'));
+            Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been updated'));
 
             return $this->redirect(['index']);
 
@@ -132,6 +131,9 @@ class TypesController extends Controller
      *
      * @param string $id
      * @return mixed
+     * @throws \Exception
+     * @throws \yii\db\StaleObjectException
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionDelete($id)
     {
@@ -145,6 +147,9 @@ class TypesController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
      * @return mixed
+     * @throws \Exception
+     * @throws \yii\db\StaleObjectException
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionDeletemultiple()
     {

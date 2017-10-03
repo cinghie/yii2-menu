@@ -21,14 +21,12 @@ use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
-/**
- * MenuitemsController implements the CRUD actions for Items model.
- */
 class ItemsController extends Controller
 {
 
     /**
      * @inheritdoc
+     * @throws \yii\web\ForbiddenHttpException
      */
     public function behaviors()
     {
@@ -87,26 +85,26 @@ class ItemsController extends Controller
         if ( $model->load(Yii::$app->request->post()) )
         {
             // If alias is not set, generate it
-            if($model->alias == "")
+            if($model->alias === '')
             {
-                if($model->language === "all") {
+                if($model->language === 'all') {
                     $model->alias = $model->generateAlias($model->title);
                 } else {
-                    $model->alias = $model->generateAlias($model->title)."-".$model->language;
+                    $model->alias = $model->generateAlias($model->title). '-' .$model->language;
                 }
             }
 
             if( $model->save() )
             {
                 // Set Success Message
-                Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been created!'));
+                Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been created'));
 
                 return $this->redirect(['index']);
 
             } else {
 
                 // Set Error Message
-                Yii::$app->session->setFlash('error', Yii::t('menu', 'Menu Item could not be saved!'));
+                Yii::$app->session->setFlash('error', Yii::t('menu', 'Menu Item could not be saved'));
 
                 return $this->render('create', [
                     'model' => $model,
@@ -125,6 +123,7 @@ class ItemsController extends Controller
      *
      * @param integer $id
      * @return mixed
+     * @throws \yii\web\NotFoundHttpException
      * @throws \yii\base\InvalidParamException
      */
     public function actionUpdate($id)
@@ -134,26 +133,26 @@ class ItemsController extends Controller
         if ( $model->load(Yii::$app->request->post()) )
         {
             // If alias is not set, generate it
-            if($model->alias == "")
+            if($model->alias === '')
             {
-                if($model->language === "all") {
+                if($model->language === 'all') {
                     $model->alias = $model->generateAlias($model->title);
                 } else {
-                    $model->alias = $model->generateAlias($model->title)."-".$model->language;
+                    $model->alias = $model->generateAlias($model->title). '-' .$model->language;
                 }
             }
 
             if($model->save())
             {
                 // Set Success Message
-                Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been updated!'));
+                Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been updated'));
 
                 return $this->redirect(['index']);
 
             } else {
 
                 // Set Error Message
-                Yii::$app->session->setFlash('error', Yii::t('menu', 'Menu Item could not be saved!'));
+                Yii::$app->session->setFlash('error', Yii::t('menu', 'Menu Item could not be saved'));
 
                 return $this->render('update', [
                     'model' => $model,
@@ -173,10 +172,13 @@ class ItemsController extends Controller
      *
      * @param integer $id
      * @return mixed
+     * @throws \Exception
+     * @throws \yii\db\StaleObjectException
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionDelete($id)
     {
-        if ($id != 1) {
+        if ($id !== 1) {
             $this->findModel($id)->delete();
         }
 
@@ -188,6 +190,9 @@ class ItemsController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
      * @return mixed
+     * @throws \Exception
+     * @throws \yii\db\StaleObjectException
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionDeletemultiple()
     {
@@ -199,7 +204,7 @@ class ItemsController extends Controller
 
         foreach ($ids as $id)
         {
-            if ($id != 1) {
+            if ($id !== 1) {
 
                 $model = $this->findModel($id);
 
@@ -220,6 +225,7 @@ class ItemsController extends Controller
      *
      * @param int $id
      * @return mixed
+     * @throws \yii\web\NotFoundHttpException
      */
     public function actionChangestate($id)
     {
@@ -241,6 +247,8 @@ class ItemsController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
      * @return mixed
+     * @throws \yii\web\NotFoundHttpException
+     * @throws ForbiddenHttpException
      */
     public function actionActivemultiple()
     {
@@ -256,7 +264,7 @@ class ItemsController extends Controller
 
             if(!$model->state) {
                 $model->active();
-                Yii::$app->getSession()->setFlash('success', Yii::t('menu', 'Rest API actived'));
+                Yii::$app->getSession()->setFlash('success', Yii::t('menu', 'Menu Item actived'));
             } else {
                 throw new ForbiddenHttpException;
             }
@@ -268,6 +276,8 @@ class ItemsController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
      * @return mixed
+     * @throws \yii\web\NotFoundHttpException
+     * @throws ForbiddenHttpException
      */
     public function actionDeactivemultiple()
     {

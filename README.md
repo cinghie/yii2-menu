@@ -74,5 +74,6 @@ Libraries Needed
 <ul> 
   <li>Yii2 Grid: https://github.com/kartik-v/yii2-grid</li>
   <li>Yii2 Multilanguage: https://github.com/cinghie/yii2-multilanguage</li>
+  <li>Yii2 Traits: https://github.com/cinghie/yii2-traits</li></li>
   <li>Yii2 Widgets: https://github.com/kartik-v/yii2-widgets</li>
 </ul>

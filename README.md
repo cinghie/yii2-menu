@@ -63,6 +63,7 @@ Changelog
 --------------
 
 <ul>
+  <li>Version 0.9.0 - Implementing Yii2 Traits: https://github.com/cinghie/yii2-traits</li>
   <li>Version 0.8.1 - Purge code</li>
   <li>Version 0.8.0 - Initial Releases</li>
 </ul>

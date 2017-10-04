@@ -62,7 +62,7 @@ $this->registerJs('$(document).ready(function()
 
 <div class="menu-types-index">
 
-    <?php if(Yii::$app->getModule('essentials')->showTitles): ?>
+    <?php if(Yii::$app->getModule('menu')->showTitles): ?>
         <div class="page-header">
             <h1><?= Html::encode($this->title) ?></h1>
         </div>

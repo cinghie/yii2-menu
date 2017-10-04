@@ -94,8 +94,8 @@ class ItemsController extends Controller
                 }
             }
 
-            if( $model->save() )
-            {
+            if( $model->save() ) {
+
                 // Set Success Message
                 Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been created'));
 
@@ -142,8 +142,8 @@ class ItemsController extends Controller
                 }
             }
 
-            if($model->save())
-            {
+            if($model->save()) {
+
                 // Set Success Message
                 Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been updated'));
 
@@ -258,8 +258,8 @@ class ItemsController extends Controller
             return;
         }
 
-        foreach ($ids as $id)
-        {
+        foreach ($ids as $id) {
+
             $model = $this->findModel($id);
 
             if(!$model->state) {
@@ -287,8 +287,8 @@ class ItemsController extends Controller
             return;
         }
 
-        foreach ($ids as $id)
-        {
+        foreach ($ids as $id) {
+
             $model = $this->findModel($id);
 
             if($model->state) {

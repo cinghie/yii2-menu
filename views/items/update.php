@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = Yii::t('menu', 'Update');
 ?>
 <div class="menu-items-update">
 
-    <?php if(Yii::$app->getModule('essentials')->showTitles): ?>
+    <?php if(Yii::$app->getModule('menu')->showTitles): ?>
         <div class="page-header">
             <h1><?= Html::encode($this->title) ?></h1>
         </div>

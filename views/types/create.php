@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menu-types-create">
 
-    <?php if(Yii::$app->getModule('essentials')->showTitles): ?>
+    <?php if(Yii::$app->getModule('menu')->showTitles): ?>
         <div class="page-header">
             <h1><?= Html::encode($this->title) ?></h1>
         </div>

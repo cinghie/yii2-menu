@@ -82,8 +82,8 @@ class TypesController extends Controller
     {
         $model = new Types();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
-        {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             // Set Success Message
             Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been created'));
 
@@ -110,8 +110,8 @@ class TypesController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
-        {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             // Set Success Message
             Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been updated'));
 
@@ -159,8 +159,8 @@ class TypesController extends Controller
             return;
         }
 
-        foreach ($ids as $id)
-        {
+        foreach ($ids as $id) {
+
             $model = $this->findModel($id);
 
             if ($model->delete()) {

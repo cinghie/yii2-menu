@@ -123,10 +123,12 @@ $this->registerJs('$(document).ready(function()
                         $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $model->parentid]));
                         $mid = isset($model->parentid) ? $model->parentid : "";
 
-                        if($mid!="") {
-                            return Html::a($model->parent->title,$url);
+                        if($mid == 1) {
+	                        return $model->parent->title;
+                        } elseif ($mid == "") {
+	                        return Yii::t('articles', 'Nobody');
                         } else {
-                            return Yii::t('articles', 'Nobody');
+	                        return Html::a($model->parent->title,$url);
                         }
                     },
                     'width' => '10%',

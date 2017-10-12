@@ -33,6 +33,7 @@ use yii\db\ActiveRecord;
  * @property string $access
  * @property string $link
  * @property string $language
+ * @property string $class
  * @property string $linkOptions | example [{"data-method":"post"}]
  * @property string $params | example [{"id":"1","alias":"my-alias"}]
  *
@@ -59,8 +60,9 @@ class Items extends ActiveRecord
         return [
             [['menutypeid', 'title', 'language', 'link'], 'required'],
             [['menutypeid', 'parentid'], 'integer'],
+            [['class'], 'string', 'max' => 24],
             [['link'], 'string', 'max' => 1024],
-            [['params','linkOptions'], 'string'],
+            [['linkOptions'], 'string'],
             [['menutypeid'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutypeid' => 'id']],
         ];
     }
@@ -75,8 +77,8 @@ class Items extends ActiveRecord
             'menutypeid' => Yii::t('menu', 'Menutypeid'),
             'parentid' => Yii::t('menu', 'Parentid'),
             'link' => Yii::t('menu', 'Link'),
+            'class' => Yii::t('menu', 'Class'),
             'linkOptions' => Yii::t('menu', 'Link Options'),
-            'params' => Yii::t('menu', 'Params'),
         ];
     }
 

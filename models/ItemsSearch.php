@@ -28,7 +28,7 @@ class ItemsSearch extends Items
     {
         return [
             [['id', 'menutypeid', 'parentid', 'state'], 'integer'],
-            [['title', 'alias', 'link', 'params', 'linkOptions', 'access', 'language'], 'safe'],
+            [['title', 'alias', 'link', 'class', 'linkOptions', 'access', 'language'], 'safe'],
         ];
     }
 
@@ -77,7 +77,7 @@ class ItemsSearch extends Items
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'link', $this->link])
-            ->andFilterWhere(['like', 'params', $this->params])
+            ->andFilterWhere(['like', 'class', $this->class])
             ->andFilterWhere(['like', 'linkOptions', $this->linkOptions])
             ->andFilterWhere(['like', 'access', $this->access])
             ->andFilterWhere(['like', 'language', $this->language]);

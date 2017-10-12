@@ -69,7 +69,13 @@ use yii\helpers\Html;
                         ]
                     ])->textInput(['maxlength' => true]) ?>
 
-                    <?= $model->getLanguageWidget($form) ?>
+                    <?= $form->field($model, 'linkOptions', [
+	                    'addon' => [
+		                    'prepend' => [
+			                    'content'=>'<i class="fa fa-external-link-square"></i>'
+		                    ]
+	                    ],
+                    ])->textarea(['rows' => 4]) ?>
 
                 </div>
 
@@ -86,13 +92,13 @@ use yii\helpers\Html;
                         ],
                     ]); ?>
 
-                    <?= $form->field($model, 'params', [
-                        'addon' => [
-                            'prepend' => [
-                                'content'=>'<i class="fa fa-filter"></i>'
-                            ]
-                        ]
-                    ])->textarea(['rows' => 4]) ?>
+                    <?= $form->field($model, 'class', [
+	                    'addon' => [
+		                    'prepend' => [
+			                    'content'=>'<i class="fa fa-css3"></i>'
+		                    ]
+	                    ]
+                    ])->textInput(['maxlength' => true]) ?>
 
                 </div>
 
@@ -102,13 +108,7 @@ use yii\helpers\Html;
 
                     <?= $model->getAccessWidget($form) ?>
 
-                    <?= $form->field($model, 'linkOptions', [
-                        'addon' => [
-                            'prepend' => [
-                                'content'=>'<i class="fa fa-external-link-square"></i>'
-                            ]
-                        ],
-                    ])->textarea(['rows' => 4]) ?>
+                    <?= $model->getLanguageWidget($form) ?>
 
                 </div>
 

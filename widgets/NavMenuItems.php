@@ -59,8 +59,10 @@ class NavMenuItems extends Widget
             ];
 
         } else {
+
             $menuItems = new Items();
             $menuItems = $menuItems->find()->findByMenuType($this->menuId)->orderBy([$this->menuOrderBy => $this->menuOrderType])->all();
+
             if(count($menuItems) != 0)
             {
                 foreach($menuItems as $menuItem)
@@ -70,15 +72,17 @@ class NavMenuItems extends Widget
                     {
                         // Check if item has childs
                         $childs = $menuItem->getChilds($menuItem->id)->orderBy([$this->childOrderBy => $this->childOrderType])->asArray()->all();
-                        if(count($childs))
-                        {
+
+                        if(count($childs)) {
                             $this->createMenuItem($menuItem,$childs);
                         } else {
                             $this->createMenuItem($menuItem);
                         }
                     }
                 }
+
             } else {
+
                 $this->menuItems[] = [
                     'label' => 'Menu Empty',
                     'url' => '#'
@@ -110,6 +114,7 @@ class NavMenuItems extends Widget
     {
         $i = 0;
         $array = [];
+
         foreach($menuItems as $menuItem)
         {
             // Check language
@@ -122,6 +127,7 @@ class NavMenuItems extends Widget
                 $i++;
             }
         }
+
         return $array;
     }
 
@@ -135,15 +141,15 @@ class NavMenuItems extends Widget
         // Generate URL
         $link = [$menuItem->link];
         $url  = $this->getUrl($link,$menuItem->params);
+
         // Generate linkOptions
         $linkOptions  = json_decode($menuItem->linkOptions, true);
-        $arrayOptions = $this->getLinkOptions($linkOptions);
-        if(!empty($childs))
-        {
+        $arrayOptions = $this->getLinkOptions($menuItem->title,$linkOptions);
+
+        if(!empty($childs)) {
             $childs = $this->createMenuItemChilds($childs);
-            //echo "<pre>"; var_dump($url); echo "</pre>";
-            //echo "<pre>"; var_dump(json_decode($childs[0]['params'])); echo "</pre>";
         }
+
         $this->menuItems[] = [
             'label' => $menuItem->title,
             'linkOptions' => $arrayOptions,
@@ -161,6 +167,7 @@ class NavMenuItems extends Widget
     private function getUrl($link,$params)
     {
         $params = json_decode($params, true);
+
         if(!empty($params))
         {
             while($param = array_shift($params)) {
@@ -169,6 +176,7 @@ class NavMenuItems extends Widget
                 }
             }
         }
+
         return Url::to($link);
     }
 
@@ -177,9 +185,10 @@ class NavMenuItems extends Widget
      *
      * @return array
      */
-    private function getLinkOptions($linkOptions)
+    private function getLinkOptions($title,$linkOptions)
     {
         $arrayOptions = [];
+
         if(!empty($linkOptions))
         {
             while($linkOption = array_shift($linkOptions))
@@ -189,6 +198,9 @@ class NavMenuItems extends Widget
                 }
             }
         }
+
+	    $arrayOptions['title'] = $title;
+
         return $arrayOptions;
     }
 

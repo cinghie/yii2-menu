@@ -7,7 +7,7 @@
 * @github https://github.com/cinghie/yii2-articles
 * @license GNU GENERAL PUBLIC LICENSE VERSION 3
 * @package yii2-menu
-* @version 0.9.2
+* @version 0.9.1
 */
 
 use yii\bootstrap\Nav;

@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.1
+ * @version 0.9.2
  */
 
 namespace cinghie\menu\models;
@@ -28,7 +28,7 @@ class ItemsSearch extends Items
     {
         return [
             [['id', 'menutypeid', 'parentid', 'state'], 'integer'],
-            [['title', 'alias', 'link', 'class', 'linkOptions', 'access', 'language'], 'safe'],
+            [['title', 'alias', 'link', 'class', 'linkOptions', 'params','access', 'language'], 'safe'],
         ];
     }
 
@@ -79,6 +79,7 @@ class ItemsSearch extends Items
             ->andFilterWhere(['like', 'link', $this->link])
             ->andFilterWhere(['like', 'class', $this->class])
             ->andFilterWhere(['like', 'linkOptions', $this->linkOptions])
+            ->andFilterWhere(['like', 'params', $this->params])
             ->andFilterWhere(['like', 'access', $this->access])
             ->andFilterWhere(['like', 'language', $this->language]);
 

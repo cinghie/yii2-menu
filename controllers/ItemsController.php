@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.1
+ * @version 0.9.2
  */
 
 namespace cinghie\menu\controllers;
@@ -26,6 +26,7 @@ class ItemsController extends Controller
 
     /**
      * @inheritdoc
+     *
      * @throws \yii\web\ForbiddenHttpException
      */
     public function behaviors()
@@ -47,6 +48,9 @@ class ItemsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
+                    'activemultiple' => ['POST'],
+                    'changestate' => ['POST'],
+                    'deactivemultiple' => ['POST'],
                     'delete' => ['POST'],
                     'deletemultiple' => ['POST'],
                 ],

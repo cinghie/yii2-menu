@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.1
+ * @version 0.9.2
  */
 
 namespace cinghie\menu\models;
@@ -45,7 +45,6 @@ class TypesSearch extends Types
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     *
      * @return ActiveDataProvider
      */
     public function search($params)
@@ -77,4 +76,5 @@ class TypesSearch extends Types
 
         return $dataProvider;
     }
+
 }

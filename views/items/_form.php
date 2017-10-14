@@ -7,12 +7,11 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.1
+ * @version 0.9.2
  */
 
 use kartik\widgets\ActiveForm;
 use kartik\widgets\Select2;
-use yii\helpers\Html;
 
 ?>
 
@@ -69,14 +68,6 @@ use yii\helpers\Html;
                         ]
                     ])->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'linkOptions', [
-	                    'addon' => [
-		                    'prepend' => [
-			                    'content'=>'<i class="fa fa-external-link-square"></i>'
-		                    ]
-	                    ],
-                    ])->textarea(['rows' => 4]) ?>
-
                 </div>
 
                 <div class="col-lg-4">
@@ -100,6 +91,14 @@ use yii\helpers\Html;
 	                    ]
                     ])->textInput(['maxlength' => true]) ?>
 
+                    <?= $form->field($model, 'linkOptions', [
+	                    'addon' => [
+		                    'prepend' => [
+			                    'content'=>'<i class="fa fa-external-link-square"></i>'
+		                    ]
+	                    ],
+                    ])->textarea(['rows' => 4]) ?>
+
                 </div>
 
                 <div class="col-lg-4">
@@ -109,6 +108,14 @@ use yii\helpers\Html;
                     <?= $model->getAccessWidget($form) ?>
 
                     <?= $model->getLanguageWidget($form) ?>
+
+                    <?= $form->field($model, 'params', [
+	                    'addon' => [
+		                    'prepend' => [
+			                    'content'=>'<i class="fa fa-filter"></i>'
+		                    ]
+	                    ]
+                    ])->textarea(['rows' => 4]) ?>
 
                 </div>
 

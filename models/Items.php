@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.1
+ * @version 0.9.2
  */
 
 namespace cinghie\menu\models;
@@ -58,11 +58,11 @@ class Items extends ActiveRecord
     public function rules()
     {
         return [
-            [['menutypeid', 'title', 'language', 'link'], 'required'],
+            [['menutypeid', 'parentid', 'title', 'language', 'link', 'state'], 'required'],
             [['menutypeid', 'parentid'], 'integer'],
             [['class'], 'string', 'max' => 24],
             [['link'], 'string', 'max' => 1024],
-            [['linkOptions'], 'string'],
+	        [['params','linkOptions'], 'string'],
             [['menutypeid'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutypeid' => 'id']],
         ];
     }
@@ -73,12 +73,18 @@ class Items extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('menu', 'ID'),
-            'menutypeid' => Yii::t('menu', 'Menutypeid'),
-            'parentid' => Yii::t('menu', 'Parentid'),
-            'link' => Yii::t('menu', 'Link'),
-            'class' => Yii::t('menu', 'Class'),
-            'linkOptions' => Yii::t('menu', 'Link Options'),
+	        'id' => Yii::t('menu', 'ID'),
+	        'menutypeid' => Yii::t('menu', 'Menutypeid'),
+	        'title' => Yii::t('traits', 'Title'),
+	        'alias' => Yii::t('traits', 'Alias'),
+	        'parentid' => Yii::t('menu', 'Parentid'),
+	        'state' => Yii::t('traits', 'State'),
+	        'access' => Yii::t('traits', 'Access'),
+	        'language' => Yii::t('traits', 'Language'),
+	        'class' => Yii::t('menu', 'Class'),
+	        'link' => Yii::t('menu', 'Link'),
+	        'linkOptions' => Yii::t('menu', 'Link Options'),
+	        'params' => Yii::t('menu', 'Params'),
         ];
     }
 

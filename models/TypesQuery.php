@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.1
+ * @version 0.9.2
  */
 
 namespace cinghie\menu\models;
@@ -23,6 +23,7 @@ class TypesQuery extends ActiveQuery
 {
     /**
      * @inheritdoc
+     *
      * @return Types[]|array
      */
     public function all($db = null)
@@ -32,6 +33,7 @@ class TypesQuery extends ActiveQuery
 
     /**
      * @inheritdoc
+     *
      * @return Types|array|null
      */
     public function one($db = null)

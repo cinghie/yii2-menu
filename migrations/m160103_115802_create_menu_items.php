@@ -44,6 +44,18 @@ class m160103_115802_create_menu_items extends Migration
             '{{%menu_types}}', "id",
             "CASCADE", "RESTRICT");
 
+	    // Add Index and Foreign Key access
+	    $this->createIndex(
+		    "index_menu_parent",
+		    "{{%menu_items}}",
+		    "menutype_id"
+	    );
+
+	    $this->addForeignKey("fk_menu_parent",
+		    '{{%menu_items}}', "menutype_id",
+		    '{{%menu_types}}', "id",
+		    "CASCADE", "RESTRICT");
+
         // Add Menu Item Root
         $this->insert('{{%menu_items}}', [
             'id' => 1,

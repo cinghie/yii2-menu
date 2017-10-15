@@ -48,11 +48,11 @@ class m160103_115802_create_menu_items extends Migration
 	    $this->createIndex(
 		    "index_menu_parent",
 		    "{{%menu_items}}",
-		    "menutype_id"
+		    "parent_id"
 	    );
 
 	    $this->addForeignKey("fk_menu_parent",
-		    '{{%menu_items}}', "menutype_id",
+		    '{{%menu_items}}', "parent_id",
 		    '{{%menu_types}}', "id",
 		    "CASCADE", "RESTRICT");
 

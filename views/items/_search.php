@@ -24,13 +24,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'menutypeid') ?>
+    <?= $form->field($model, 'menutype_id') ?>
 
     <?= $form->field($model, 'title') ?>
 
     <?= $form->field($model, 'alias') ?>
 
-    <?= $form->field($model, 'parentid') ?>
+    <?= $form->field($model, 'parent_id') ?>
 
     <?php // echo $form->field($model, 'published') ?>
 

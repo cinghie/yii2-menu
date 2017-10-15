@@ -51,7 +51,7 @@ use kartik\widgets\Select2;
 
                     <?= $model->getTitleWidget($form) ?>
 
-                    <?= $form->field($model, 'menutypeid')->widget(Select2::classname(), [
+                    <?= $form->field($model, 'menutype_id')->widget(Select2::classname(), [
                         'data' => $model->getTypesSelect2(),
                         'addon' => [
                             'prepend' => [
@@ -74,7 +74,7 @@ use kartik\widgets\Select2;
 
                     <?= $model->getAliasWidget($form) ?>
 
-                    <?= $form->field($model, 'parentid')->widget(Select2::classname(), [
+                    <?= $form->field($model, 'parent_id')->widget(Select2::classname(), [
                         'data' => $model->getItemsSelect2(),
                         'addon' => [
                             'prepend' => [
@@ -99,6 +99,8 @@ use kartik\widgets\Select2;
 	                    ],
                     ])->textarea(['rows' => 4]) ?>
 
+                    <div class="alert alert-info">Example: [{"data-method":"post"}]</div>
+
                 </div>
 
                 <div class="col-lg-4">
@@ -116,6 +118,8 @@ use kartik\widgets\Select2;
 		                    ]
 	                    ]
                     ])->textarea(['rows' => 4]) ?>
+
+                    <div class="alert alert-info">Example: [{"id":"1","alias":"my-alias"}]</div>
 
                 </div>
 

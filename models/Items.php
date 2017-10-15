@@ -15,6 +15,7 @@ namespace cinghie\menu\models;
 use Yii;
 use cinghie\traits\AccessTrait;
 use cinghie\traits\LanguageTrait;
+use cinghie\traits\ParentTrait;
 use cinghie\traits\StateTrait;
 use cinghie\traits\TitleAliasTrait;
 use cinghie\traits\UserHelpersTrait;
@@ -25,24 +26,24 @@ use yii\db\ActiveRecord;
  * This is the model class for table "{{%menu_items}}".
  *
  * @property integer $id
- * @property integer $menutypeid
+ * @property integer $menutype_id
+ * @property integer $parent_id
  * @property string $title
  * @property string $alias
- * @property integer $parentid
  * @property integer $state
  * @property string $access
  * @property string $link
  * @property string $language
  * @property string $class
- * @property string $linkOptions | example [{"data-method":"post"}]
- * @property string $params | example [{"id":"1","alias":"my-alias"}]
+ * @property string $linkOptions | example: [{"data-method":"post"}]
+ * @property string $params | example: [{"id":"1","alias":"my-alias"}]
  *
  * @property Types $menutype
  */
 class Items extends ActiveRecord
 {
 
-    use AccessTrait, LanguageTrait, TitleAliasTrait, StateTrait, UserHelpersTrait, ViewsHelpersTrait;
+    use AccessTrait, LanguageTrait, ParentTrait, TitleAliasTrait, StateTrait, UserHelpersTrait, ViewsHelpersTrait;
 
     /**
      * @inheritdoc
@@ -58,12 +59,12 @@ class Items extends ActiveRecord
     public function rules()
     {
         return [
-            [['menutypeid', 'parentid', 'title', 'language', 'link', 'state'], 'required'],
-            [['menutypeid', 'parentid'], 'integer'],
+            [['menutype_id', 'parent_id', 'title', 'language', 'link', 'state'], 'required'],
+            [['menutype_id'], 'integer'],
             [['class'], 'string', 'max' => 24],
             [['link'], 'string', 'max' => 1024],
 	        [['params','linkOptions'], 'string'],
-            [['menutypeid'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutypeid' => 'id']],
+            [['menutype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutype_id' => 'id']],
         ];
     }
 
@@ -74,10 +75,10 @@ class Items extends ActiveRecord
     {
         return [
 	        'id' => Yii::t('menu', 'ID'),
-	        'menutypeid' => Yii::t('menu', 'Menutypeid'),
+	        'menutype_id' => Yii::t('menu', 'Menutypeid'),
+	        'parent_id' => Yii::t('traits', 'Parentid'),
 	        'title' => Yii::t('traits', 'Title'),
 	        'alias' => Yii::t('traits', 'Alias'),
-	        'parentid' => Yii::t('menu', 'Parentid'),
 	        'state' => Yii::t('traits', 'State'),
 	        'access' => Yii::t('traits', 'Access'),
 	        'language' => Yii::t('traits', 'Language'),
@@ -143,24 +144,23 @@ class Items extends ActiveRecord
      */
     public function getMenutype()
     {
-        return $this->hasOne(Types::className(), ['id' => 'menutypeid']);
+        return $this->hasOne(Types::className(), ['id' => 'menutype_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParent()
-    {
-        return $this->hasOne(Items::className(), ['id' => 'parentid']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getChilds()
-    {
-        return $this->hasMany(Items::className(), ['parentid' => 'id']);
-    }
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getParent()
+	{
+		return $this->hasOne(Items::className(), ['id' => 'parentid']);
+	}
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getChilds()
+	{
+		return $this->hasMany(Items::className(), ['parentid' => 'id']);
+	}
 
     /**
      * @inheritdoc

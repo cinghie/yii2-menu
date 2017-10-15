@@ -30,8 +30,8 @@ class ItemsQuery extends ActiveQuery
     {
         $this->andWhere('[[id]]!=1');
         $this->andWhere(['state' => 1]);
-        $this->andWhere(['menutypeid' => $id]);
-        $this->andWhere(['parentid' => 1]);
+        $this->andWhere(['menutype_id' => $id]);
+        $this->andWhere(['parent_id' => 1]);
         return $this;
     }
 

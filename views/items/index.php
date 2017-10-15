@@ -106,22 +106,22 @@ $this->registerJs('$(document).ready(function()
                     'hAlign' => 'center',
                 ],*/
                 [
-                    'attribute' => 'menutypeid',
+                    'attribute' => 'menutype_id',
                     'format' => 'html',
                     'hAlign' => 'center',
                     'value' => function ($model) {
-                        $url = urldecode(Url::toRoute(['types/update', 'id' => $model->menutypeid]));
+                        $url = urldecode(Url::toRoute(['types/update', 'id' => $model->menutype_id]));
                         return Html::a($model->menutype->title,$url);
                     },
                     'width' => '10%',
                 ],
                 [
-                    'attribute' => 'parentid',
+                    'attribute' => 'parent_id',
                     'format' => 'html',
                     'hAlign' => 'center',
-                    'value' => function ($model) {
-                        $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $model->parentid]));
-                        $mid = isset($model->parentid) ? $model->parentid : "";
+                    /*'value' => function ($model) {
+                        $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $model->parent_id]));
+                        $mid = isset($model->parent_id) ? $model->parent_id : "";
 
                         if($mid == 1) {
 	                        return $model->parent->title;
@@ -130,6 +130,10 @@ $this->registerJs('$(document).ready(function()
                         } else {
 	                        return Html::a($model->parent->title,$url);
                         }
+                    },*/
+                    'value' => function ($model) {
+	                    /** @var $model cinghie\articles\models\Items */
+	                    return $model->getParentGridView('title','/menu/items/update');
                     },
                     'width' => '10%',
                 ],

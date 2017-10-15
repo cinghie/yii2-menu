@@ -29,7 +29,6 @@ return array(
     'Menu Type could not be saved' => 'Impossibile salvare il Tipo di Menu',
     'Modified' => 'Data modifica',
     'Params' => 'Parametri',
-    'Parentid' => 'Genitore',
     'Type' => 'Tipo',
     'Unactived' => 'Non Attivo',
     'Update' => 'Modifica',

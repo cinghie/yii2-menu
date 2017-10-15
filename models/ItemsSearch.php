@@ -27,7 +27,7 @@ class ItemsSearch extends Items
     public function rules()
     {
         return [
-            [['id', 'menutypeid', 'parentid', 'state'], 'integer'],
+            [['id', 'menutype_id', 'parent_id', 'state'], 'integer'],
             [['title', 'alias', 'link', 'class', 'linkOptions', 'params','access', 'language'], 'safe'],
         ];
     }
@@ -69,8 +69,8 @@ class ItemsSearch extends Items
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'menutypeid' => $this->menutypeid,
-            'parentid' => $this->parentid,
+            'menutype_id' => $this->menutype_id,
+            'parent_id' => $this->parent_id,
             'state' => $this->state,
         ]);
 

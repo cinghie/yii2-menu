@@ -152,14 +152,14 @@ class Items extends ActiveRecord
 	 */
 	public function getParent()
 	{
-		return $this->hasOne(Items::className(), ['id' => 'parentid']);
+		return $this->hasOne(Items::className(), ['id' => 'parent_id']);
 	}
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
 	public function getChilds()
 	{
-		return $this->hasMany(Items::className(), ['parentid' => 'id']);
+		return $this->hasMany(Items::className(), ['parent_id' => 'id']);
 	}
 
     /**

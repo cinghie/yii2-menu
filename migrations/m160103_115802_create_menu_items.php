@@ -21,15 +21,15 @@ class m160103_115802_create_menu_items extends Migration
         $this->createTable('{{%menu_items}}', [
             'id' => $this->primaryKey(),
             'menutype_id' => $this->integer(11)->notNull(),
-            'parent_id' => $this->integer(11)->notNull()->defaultValue(1),
+            'parent_id' => $this->integer(11)->defaultValue(1),
             'title' => $this->string(255)->notNull(),
             'alias' => $this->string(255)->notNull()->unique(),
             'link' => $this->string(1024)->notNull(),
             'state' => $this->boolean()->notNull()->defaultValue(0),
             'access' => $this->string(64)->notNull()->defaultValue('public'),
             'language' => $this->string(7)->notNull()->defaultValue('all'),
-            'params' => $this->text(),
             'linkOptions' => $this->text(),
+            'params' => $this->text(),
         ]);
 
         // Add Index and Foreign Key access
@@ -46,23 +46,24 @@ class m160103_115802_create_menu_items extends Migration
 
 	    // Add Index and Foreign Key access
 	    $this->createIndex(
-		    "index_menu_parent",
+		    "index_menu_parent_id",
 		    "{{%menu_items}}",
 		    "parent_id"
 	    );
 
-	    $this->addForeignKey("fk_menu_parent",
+	    $this->addForeignKey("fk_menu_parent_id",
 		    '{{%menu_items}}', "parent_id",
 		    '{{%menu_items}}', "id",
-		    "CASCADE", "RESTRICT");
+		    "SET NULL", "CASCADE"
+	    );
 
         // Add Menu Item Root
         $this->insert('{{%menu_items}}', [
             'id' => 1,
             'menutype_id' => 1,
+            'parent_id' => NULL,
             'title' => 'Menu_Item_Root',
             'alias' => 'root',
-            'parent_id' => 0,
             'state' => 1,
         ]);
 

@@ -53,7 +53,7 @@ class m160103_115802_create_menu_items extends Migration
 
 	    $this->addForeignKey("fk_menu_parent",
 		    '{{%menu_items}}', "parent_id",
-		    '{{%menu_types}}', "id",
+		    '{{%menu_items}}', "id",
 		    "CASCADE", "RESTRICT");
 
         // Add Menu Item Root

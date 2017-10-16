@@ -90,7 +90,7 @@ class ItemsController extends Controller
         if ( $model->load($post) )
         {
             // If alias is not set, generate it
-	        $model->setAlias($post['Items']);
+	        $model->setAlias($post['Items'],'title');
 
             if( $model->save() ) {
 
@@ -132,7 +132,7 @@ class ItemsController extends Controller
         if ($model->load($post))
         {
 	        // If alias is not set, generate it
-	        $model->setAlias($post['Items']);
+	        $model->setAlias($post['Items'],'title');
 
             if($model->save()) {
 

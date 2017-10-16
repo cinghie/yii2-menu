@@ -85,18 +85,12 @@ class ItemsController extends Controller
     public function actionCreate()
     {
         $model = new Items();
+	    $post = Yii::$app->request->post();
 
-        if ( $model->load(Yii::$app->request->post()) )
+        if ( $model->load($post) )
         {
             // If alias is not set, generate it
-            if($model->alias === '')
-            {
-                if($model->language === 'all') {
-                    $model->alias = $model->generateAlias($model->title);
-                } else {
-                    $model->alias = $model->generateAlias($model->title). '-' .$model->language;
-                }
-            }
+	        $model->setAlias($post['Items']);
 
             if( $model->save() ) {
 
@@ -133,18 +127,12 @@ class ItemsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
 
-        if ( $model->load(Yii::$app->request->post()) )
+        if ($model->load($post))
         {
-            // If alias is not set, generate it
-            if($model->alias === '')
-            {
-                if($model->language === 'all') {
-                    $model->alias = $model->generateAlias($model->title);
-                } else {
-                    $model->alias = $model->generateAlias($model->title). '-' .$model->language;
-                }
-            }
+	        // If alias is not set, generate it
+	        $model->setAlias($post['Items']);
 
             if($model->save()) {
 

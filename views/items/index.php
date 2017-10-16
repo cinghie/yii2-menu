@@ -100,11 +100,6 @@ $this->registerJs('$(document).ready(function()
                     'attribute' => 'alias',
                     'hAlign' => 'center',
                 ],
-                /*
-                [
-                    'attribute' => 'params',
-                    'hAlign' => 'center',
-                ],*/
                 [
                     'attribute' => 'menutype_id',
                     'format' => 'html',
@@ -119,21 +114,9 @@ $this->registerJs('$(document).ready(function()
                     'attribute' => 'parent_id',
                     'format' => 'html',
                     'hAlign' => 'center',
-                    /*'value' => function ($model) {
-                        $url = urldecode(Url::toRoute(['/menu/items/update', 'id' => $model->parent_id]));
-                        $mid = isset($model->parent_id) ? $model->parent_id : "";
-
-                        if($mid == 1) {
-	                        return $model->parent->title;
-                        } elseif ($mid == "") {
-	                        return Yii::t('articles', 'Nobody');
-                        } else {
-	                        return Html::a($model->parent->title,$url);
-                        }
-                    },*/
                     'value' => function ($model) {
-	                    /** @var $model cinghie\articles\models\Items */
-	                    return $model->getParentGridView('title','/menu/items/update');
+	                    /** @var $model cinghie\menu\models\Items */
+	                    return $model->getParentGridView('title','/menu/items/update', 1);
                     },
                     'width' => '10%',
                 ],
@@ -142,7 +125,7 @@ $this->registerJs('$(document).ready(function()
                     'format' => 'html',
                     'hAlign' => 'center',
                     'value' => function ($model) {
-                        /** @var $model cinghie\articles\models\Items */
+                        /** @var $model cinghie\menu\models\Items */
                         return $model->getAccessGridView();
                     }
                 ],
@@ -157,7 +140,7 @@ $this->registerJs('$(document).ready(function()
                     'hAlign' => 'center',
                     'width' => '5%',
                     'value' => function ($model) {
-                        /** @var $model cinghie\articles\models\Items */
+                        /** @var $model cinghie\menu\models\Items */
                         return $model->getStateGridView();
                     }
                 ],

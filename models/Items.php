@@ -89,6 +89,30 @@ class Items extends ActiveRecord
         ];
     }
 
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getMenutype()
+	{
+		return $this->hasOne(Types::className(), ['id' => 'menutype_id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getTypes()
+	{
+		return Types::find()->asArray()->all();
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getMenuitems()
+	{
+		return Items::find()->asArray()->all();
+	}
+
     /**
      * Return Types Select2
      *
@@ -125,45 +149,6 @@ class Items extends ActiveRecord
 
         return $array;
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTypes()
-    {
-        return Types::find()->asArray()->all();
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMenuitems()
-    {
-        return Items::find()->asArray()->all();
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMenutype()
-    {
-        return $this->hasOne(Types::className(), ['id' => 'menutype_id']);
-    }
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getParent()
-	{
-		return $this->hasOne(Items::className(), ['id' => 'parent_id']);
-	}
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getChilds()
-	{
-		return $this->hasMany(Items::className(), ['parent_id' => 'id']);
-	}
 
     /**
      * @inheritdoc

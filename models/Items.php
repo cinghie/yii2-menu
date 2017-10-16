@@ -116,8 +116,11 @@ class Items extends ActiveRecord
         $menuItems = $this->getMenuitems();
         $array = array();
 
-        foreach($menuItems as $menuItem) {
-            $array[$menuItem['id']] = ucwords($menuItem['title']);
+        foreach($menuItems as $menuItem)
+        {
+        	if($menuItem['id'] != $this->id) {
+		        $array[$menuItem['id']] = ucwords($menuItem['title']);
+	        }
         }
 
         return $array;

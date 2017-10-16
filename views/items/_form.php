@@ -74,14 +74,7 @@ use kartik\widgets\Select2;
 
                     <?= $model->getAliasWidget($form) ?>
 
-                    <?= $form->field($model, 'parent_id')->widget(Select2::classname(), [
-                        'data' => $model->getItemsSelect2(),
-                        'addon' => [
-                            'prepend' => [
-                                'content'=>'<i class="glyphicon glyphicon-folder-open"></i>'
-                            ]
-                        ],
-                    ]); ?>
+	                <?= $model->getParentWidget($form,$model->getItemsSelect2()) ?>
 
                     <?= $form->field($model, 'class', [
 	                    'addon' => [

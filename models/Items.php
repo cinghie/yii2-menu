@@ -58,14 +58,14 @@ class Items extends ActiveRecord
      */
     public function rules()
     {
-        return [
-            [['menutype_id', 'parent_id', 'title', 'language', 'link', 'state'], 'required'],
+        return array_merge(AccessTrait::rules(), LanguageTrait::rules(), ParentTrait::rules(), TitleAliasTrait::rules(), StateTrait::rules(), [
+            [['menutype_id', 'parent_id', 'title', 'access', 'language', 'link', 'state'], 'required'],
             [['menutype_id'], 'integer'],
             [['class'], 'string', 'max' => 24],
             [['link'], 'string', 'max' => 1024],
 	        [['params','linkOptions'], 'string'],
             [['menutype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutype_id' => 'id']],
-        ];
+        ]);
     }
 
     /**
@@ -73,20 +73,14 @@ class Items extends ActiveRecord
      */
     public function attributeLabels()
     {
-        return [
+        return array_merge(AccessTrait::rules(), LanguageTrait::rules(), ParentTrait::rules(), TitleAliasTrait::rules(), StateTrait::rules(), [
 	        'id' => Yii::t('menu', 'ID'),
 	        'menutype_id' => Yii::t('menu', 'Menutypeid'),
-	        'parent_id' => Yii::t('traits', 'Parentid'),
-	        'title' => Yii::t('traits', 'Title'),
-	        'alias' => Yii::t('traits', 'Alias'),
-	        'state' => Yii::t('traits', 'State'),
-	        'access' => Yii::t('traits', 'Access'),
-	        'language' => Yii::t('traits', 'Language'),
 	        'class' => Yii::t('menu', 'Class'),
 	        'link' => Yii::t('menu', 'Link'),
 	        'linkOptions' => Yii::t('menu', 'Link Options'),
 	        'params' => Yii::t('menu', 'Params'),
-        ];
+        ]);
     }
 
 	/**

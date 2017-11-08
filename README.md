@@ -63,6 +63,7 @@ Changelog
 --------------
 
 <ul>
+  <li>Version 0.9.3 - Fix Alias generation, Fix Trait use, Fix Child generation</li>
   <li>Version 0.9.2 - Implementing ParentTrait</li>
   <li>Version 0.9.1 - Adding Title and Class to Link</li>
   <li>Version 0.9.0 - Implementing Yii2 Traits: https://github.com/cinghie/yii2-traits</li>

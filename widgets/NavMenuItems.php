@@ -26,26 +26,27 @@ class NavMenuItems extends Widget
     public $menuOrderType;
     public $childOrderBy;
     public $childOrderType;
-    public $options;
 
-    /**
-     * @inheritdoc
-     */
+	/**
+	 * @inheritdoc
+	 *
+	 * @throws \Exception
+	 */
     public function init()
     {
         parent::init();
 
         // set default Orderby
-        if($this->menuOrderBy == "") { $this->menuOrderBy = "id"; }
+        if($this->menuOrderBy === '' || $this->menuOrderBy === null) { $this->menuOrderBy = 'id'; }
 
         // set default Orderby
-        if($this->menuOrderType == "") { $this->menuOrderType = SORT_ASC; }
+        if($this->menuOrderType === '' || $this->menuOrderType === null) { $this->menuOrderType = SORT_ASC; }
 
         // set default Orderby
-        if($this->childOrderBy == "") { $this->childOrderBy = "id"; }
+        if($this->childOrderBy === '' || $this->childOrderBy === null) { $this->childOrderBy = 'id'; }
 
         // set default Orderby
-        if($this->childOrderType == "") { $this->childOrderType = SORT_ASC; }
+        if($this->childOrderType === '' || $this->childOrderType === null) { $this->childOrderType = SORT_ASC; }
 
         if($this->menuId === null)
         {
@@ -53,7 +54,7 @@ class NavMenuItems extends Widget
             $this->menuItems = [
                 ['label' => 'Home', 'url' => ['/']],
                 ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
+	            ['label' => 'Contact', 'url' => ['/site/contact']],
                 ['label' => 'Login', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
                 ['label' => 'Logout', 'url' => ['/site/logout'], 'visible' => !Yii::$app->user->isGuest],
             ];
@@ -61,7 +62,7 @@ class NavMenuItems extends Widget
         } else {
 
             $menuItems = new Items();
-            $menuItems = $menuItems->find()->findByMenuType($this->menuId)->orderBy([$this->menuOrderBy => $this->menuOrderType])->all();
+	        $menuItems = $menuItems->find()->findByMenuType($this->menuId)->orderBy([ $this->menuOrderBy => $this->menuOrderType])->all();
 
             if(count($menuItems) != 0)
             {
@@ -71,12 +72,13 @@ class NavMenuItems extends Widget
                     if($this->checkLanguageMenu($menuItem->language))
                     {
                         // Check if item has childs
+	                    /** @var Items $menuItem */
                         $childs = $menuItem->getChilds($menuItem->id)->orderBy([$this->childOrderBy => $this->childOrderType])->asArray()->all();
 
                         if(count($childs)) {
                             $this->createMenuItem($menuItem,$childs);
                         } else {
-                            $this->createMenuItem($menuItem);
+	                        $this->createMenuItem($menuItem,[]);
                         }
                     }
                 }
@@ -91,25 +93,25 @@ class NavMenuItems extends Widget
         }
     }
 
-    /*
-     * Check menu item language
-     *
-     * @return boolean
-     */
+	/**
+	 * Check menu item language
+	 *
+	 * @param string $lang
+	 * @return bool
+	 * @throws \Exception
+	 */
     private function checkLanguageMenu($lang)
     {
-        if($lang == Yii::$app->language || $lang == 'all' || $lang == 'All') {
-            return true;
-        } else {
-            return false;
-        }
+	    return $lang === Yii::$app->language || $lang === 'all' || $lang === 'All';
     }
 
-    /*
-     * Create single item childs
-     *
-     * @return array
-     */
+	/**
+	 * Create single item childs
+	 *
+	 * @param array $menuItems
+	 * @return array
+	 * @throws \Exception
+	 */
     private function createMenuItemChilds($menuItems)
     {
         $i = 0;
@@ -120,10 +122,9 @@ class NavMenuItems extends Widget
             // Check language
             if($this->checkLanguageMenu($menuItem['language']))
             {
-                $link = [$menuItem['link']];
-                $url  = $this->getUrl($link,$menuItem['params']);
                 $array[$i]['label'] = $menuItem['title'];
-                $array[$i]['url']   = $url;
+                $array[$i]['url'] = $this->getUrl([$menuItem['link']],$menuItem['params']);
+                $array[$i]['linkOptions'] = $this->getLinkOptions($menuItem['title'],json_decode($menuItem['linkOptions'], true));
                 $i++;
             }
         }
@@ -131,16 +132,19 @@ class NavMenuItems extends Widget
         return $array;
     }
 
-    /*
-     * Create single menu item with childs
-     *
-     * @return mixed
-     */
-    private function createMenuItem($menuItem,$childs = [])
+	/**
+	 * Create single menu item with childs
+	 *
+	 * @param Items $menuItem
+	 * @param array $childs
+	 * @return mixed
+	 * @throws \Exception
+	 */
+    private function createMenuItem($menuItem,array $childs)
     {
         // Generate URL
         $link = [$menuItem->link];
-        $url  = $this->getUrl($link,$menuItem->params);
+	    $url = $this->getUrl($link,$menuItem->params);
 
         // Generate linkOptions
         $linkOptions  = json_decode($menuItem->linkOptions, true);
@@ -159,19 +163,23 @@ class NavMenuItems extends Widget
         ];
     }
 
-    /*
-     * Create url from $params
-     *
-     * @return Url
-     */
-    private function getUrl($link,$params)
+	/**
+	 * Create url from $params
+	 *
+	 * @param $link
+	 * @param $params
+	 * @return string
+	 * @throws \Exception
+	 */
+	private function getUrl($link,$params)
     {
         $params = json_decode($params, true);
 
         if(!empty($params))
         {
             while($param = array_shift($params)) {
-                foreach ($param as $key => $value) {
+	            /** @var array $param */
+	            foreach ($param as $key => $value) {
                     $link[$key] = $value;
                 }
             }
@@ -180,20 +188,22 @@ class NavMenuItems extends Widget
         return Url::to($link);
     }
 
-    /*
+    /**
      * Get array of $linkOptions
      *
+     * @param string $title
+     * @param array $linkOptions
      * @return array
      */
     private function getLinkOptions($title,$linkOptions)
     {
         $arrayOptions = [];
 
-        if(!empty($linkOptions))
-        {
-            while($linkOption = array_shift($linkOptions))
-            {
-                foreach ($linkOption as $key => $value) {
+        if(!empty($linkOptions)) {
+	        /** @var array $linkOption */
+	        while($linkOption = array_shift($linkOptions)) {
+		        /** @var array $linkOption */
+		        foreach ($linkOption as $key => $value) {
                     $arrayOptions[$key] = $value;
                 }
             }
@@ -204,22 +214,23 @@ class NavMenuItems extends Widget
         return $arrayOptions;
     }
 
-    /*
-     * Get menu item visibility
-     *
-     * @return mixed
-     */
-    private function getVisibility($access)
+	/**
+	 * Get menu item visibility
+	 *
+	 * @param $access
+	 * @return bool
+	 */
+	private function getVisibility($access)
     {
         switch ($access)
         {
-            case "only guest":
+            case 'only guest':
                 return Yii::$app->user->isGuest;
                 break;
-            case "public":
+            case 'public':
                 return true;
                 break;
-            case "registered":
+            case 'registered':
                 return !Yii::$app->user->isGuest;
                 break;
             default:
@@ -227,9 +238,11 @@ class NavMenuItems extends Widget
         }
     }
 
-    /**
-     * @inheritdoc
-     */
+	/**
+	 * @inheritdoc
+	 *
+	 * @throws \Exception
+	 */
     public function run()
     {
         return Nav::widget([

@@ -73,7 +73,7 @@ class Items extends ActiveRecord
      */
     public function attributeLabels()
     {
-        return array_merge(AccessTrait::rules(), LanguageTrait::rules(), ParentTrait::rules(), TitleAliasTrait::rules(), StateTrait::rules(), [
+        return array_merge(AccessTrait::attributeLabels(), LanguageTrait::attributeLabels(), ParentTrait::attributeLabels(), TitleAliasTrait::attributeLabels(), StateTrait::attributeLabels(), [
 	        'id' => Yii::t('menu', 'ID'),
 	        'menutype_id' => Yii::t('menu', 'Menutypeid'),
 	        'class' => Yii::t('menu', 'Class'),
@@ -117,7 +117,8 @@ class Items extends ActiveRecord
         $menuTypes = $this->getTypes();
         $array = array();
 
-        foreach($menuTypes as $menuType) {
+	    /** @var array $menuTypes */
+	    foreach($menuTypes as $menuType) {
             $array[$menuType['id']] = ucwords($menuType['title']);
         }
 
@@ -134,7 +135,8 @@ class Items extends ActiveRecord
         $menuItems = $this->getMenuitems();
         $array = array();
 
-        foreach($menuItems as $menuItem)
+	    /** @var array $menuItems */
+	    foreach($menuItems as $menuItem)
         {
         	if($menuItem['id'] != $this->id) {
 		        $array[$menuItem['id']] = ucwords($menuItem['title']);
@@ -146,6 +148,7 @@ class Items extends ActiveRecord
 
     /**
      * @inheritdoc
+     *
      * @return ItemsQuery the active query used by this AR class.
      */
     public static function find()

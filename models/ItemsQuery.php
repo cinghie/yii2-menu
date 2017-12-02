@@ -24,6 +24,7 @@ class ItemsQuery extends ActiveQuery
 
     /**
      * @inheritdoc
+     *
      * @return Items[]|array
      */
     public function findByMenuType($id)
@@ -37,6 +38,7 @@ class ItemsQuery extends ActiveQuery
 
     /**
      * @inheritdoc
+     *
      * @return Items[]|array
      */
     public function all($db = null)
@@ -46,6 +48,7 @@ class ItemsQuery extends ActiveQuery
 
     /**
      * @inheritdoc
+     *
      * @return Items|array|null
      */
     public function one($db = null)

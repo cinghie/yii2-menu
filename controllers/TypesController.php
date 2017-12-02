@@ -26,6 +26,7 @@ class TypesController extends Controller
 
     /**
      * @inheritdoc
+     *
      * @throws \yii\web\ForbiddenHttpException
      */
     public function behaviors()
@@ -102,6 +103,7 @@ class TypesController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      *
      * @param string $id
+     *
      * @return mixed
      * @throws \yii\web\NotFoundHttpException
      * @throws \yii\base\InvalidParamException
@@ -130,6 +132,7 @@ class TypesController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
      * @param string $id
+     *
      * @return mixed
      * @throws \Exception
      * @throws \yii\db\StaleObjectException
@@ -176,6 +179,7 @@ class TypesController extends Controller
      * If the model is not found, a 404 HTTP exception will be thrown.
      *
      * @param string $id
+     *
      * @return Types the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

@@ -68,6 +68,7 @@ class Types extends ActiveRecord
 
     /**
      * @inheritdoc
+     *
      * @return TypesQuery the active query used by this AR class.
      */
     public static function find()

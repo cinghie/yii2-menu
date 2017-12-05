@@ -52,8 +52,6 @@ class ItemsSearch extends Items
     {
         $query = Items::find()->where('id != :id', [ 'id' => 1 ]);
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

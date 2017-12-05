@@ -12,7 +12,7 @@
 
 namespace cinghie\menu\models;
 
-use Yii;
+use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -41,18 +41,17 @@ class TypesSearch extends Types
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
+	/**
+	 * Creates data provider instance with search query applied
+	 *
+	 * @param array $params
+	 *
+	 * @return ActiveDataProvider
+	 * @throws InvalidParamException
+	 */
     public function search($params)
     {
         $query = Types::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -51,7 +51,7 @@ use kartik\widgets\Select2;
 
                     <?= $model->getTitleWidget($form) ?>
 
-                    <?= $form->field($model, 'menutype_id')->widget(Select2::classname(), [
+                    <?= $form->field($model, 'menutype_id')->widget(Select2::className(), [
                         'data' => $model->getTypesSelect2(),
                         'addon' => [
                             'prepend' => [

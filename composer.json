@@ -1,6 +1,6 @@
 {
     "name": "cinghie/yii2-menu",
-    "description": "Yii2 Menu.",
+    "description": "Yii2 Menu to create, manage, and delete dynamic menus in a Yii2 site.",
     "keywords": [
 	    "yii2 menu",
 	    "yii2 menù",

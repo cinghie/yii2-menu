@@ -1,10 +1,14 @@
 {
     "name": "cinghie/yii2-menu",
     "description": "Yii2 Menu.",
-    "keywords": ["yii2","yii2 menù","menù yii2"],
+    "keywords": [
+	    "yii2 menu",
+	    "yii2 menù",
+	    "menù yii2"
+    ],
     "homepage": "https://github.com/cinghie/yii2-menu",
     "type": "yii2-extension",
-    "license": "GNU GPL3",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Gogodigital.it",

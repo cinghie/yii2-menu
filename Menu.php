@@ -21,6 +21,16 @@ class Menu extends \yii\base\Module
 
     // Menu Rules
     public $menuRoles = ['admin'];
+    
+    // Slugify Options
+    public $slugifyOptions = [
+        'separator' => '-',
+        'lowercase' => true,
+        'trim' => true,
+        'rulesets'  => [
+            'default'
+        ]
+    ];
 
     // Show Titles in the views
     public $showTitles = true;

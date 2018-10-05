@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.3
+ * @version 0.9.4
  */
 
 namespace cinghie\menu\models;
@@ -25,7 +25,7 @@ class ItemsQuery extends ActiveQuery
     /**
      * @inheritdoc
      *
-     * @return Items[]|array
+     * @return ItemsQuery
      */
     public function findByMenuType($id)
     {
@@ -33,6 +33,7 @@ class ItemsQuery extends ActiveQuery
         $this->andWhere(['state' => 1]);
         $this->andWhere(['menutype_id' => $id]);
         $this->andWhere(['parent_id' => 1]);
+
         return $this;
     }
 

@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.3
+ * @version 0.9.4
  */
 
 namespace cinghie\menu\models;
@@ -24,7 +24,6 @@ use yii\db\ActiveRecord;
  *
  * @property string $id
  * @property string $menutype
- * @property string $title
  * @property string $description
  */
 class Types extends ActiveRecord
@@ -60,9 +59,9 @@ class Types extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('menu', 'ID'),
+            'id' => Yii::t('traits', 'ID'),
             'menutype' => Yii::t('menu', 'Menutype'),
-            'description' => Yii::t('menu', 'Description'),
+            'description' => Yii::t('traits', 'Description'),
         ];
     }
 
@@ -73,7 +72,7 @@ class Types extends ActiveRecord
      */
     public static function find()
     {
-        return new TypesQuery(get_called_class());
+        return new TypesQuery(static::class);
     }
 
 }

@@ -7,11 +7,12 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.3
+ * @version 0.9.4
  */
 
 namespace cinghie\menu\widgets;
 
+use Exception;
 use Yii;
 use cinghie\menu\models\Items;
 use yii\bootstrap\Nav;
@@ -30,7 +31,7 @@ class NavMenuItems extends Widget
 	/**
 	 * @inheritdoc
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
     public function init()
     {
@@ -62,19 +63,19 @@ class NavMenuItems extends Widget
         } else {
 
             $menuItems = new Items();
-	        $menuItems = $menuItems->find()->findByMenuType($this->menuId)->orderBy([ $this->menuOrderBy => $this->menuOrderType])->all();
+	        $menuItems = $menuItems::find()->findByMenuType($this->menuId)->orderBy([ $this->menuOrderBy => $this->menuOrderType])->all();
 
-            if(count($menuItems) != 0)
+            if(count($menuItems) !== 0)
             {
                 foreach($menuItems as $menuItem)
                 {
                     // Check language
                     if($this->checkLanguageMenu($menuItem->language))
                     {
-                        // Check if item has childs
 	                    /** @var Items $menuItem */
-                        $childs = $menuItem->getChilds($menuItem->id)->orderBy([$this->childOrderBy => $this->childOrderType])->asArray()->all();
+                        $childs = $menuItem->getChilds()->orderBy([$this->childOrderBy => $this->childOrderType])->asArray()->all();
 
+	                    // Check if item has childs
                         if(count($childs)) {
                             $this->createMenuItem($menuItem,$childs);
                         } else {
@@ -97,8 +98,9 @@ class NavMenuItems extends Widget
 	 * Check menu item language
 	 *
 	 * @param string $lang
+	 *
 	 * @return bool
-	 * @throws \Exception
+	 * @throws Exception
 	 */
     private function checkLanguageMenu($lang)
     {
@@ -109,8 +111,9 @@ class NavMenuItems extends Widget
 	 * Create single item childs
 	 *
 	 * @param array $menuItems
+	 *
 	 * @return array
-	 * @throws \Exception
+	 * @throws Exception
 	 */
     private function createMenuItemChilds($menuItems)
     {
@@ -137,8 +140,9 @@ class NavMenuItems extends Widget
 	 *
 	 * @param Items $menuItem
 	 * @param array $childs
-	 * @return mixed
-	 * @throws \Exception
+	 *
+	 * @return void
+	 * @throws Exception
 	 */
     private function createMenuItem($menuItem,array $childs)
     {
@@ -168,8 +172,9 @@ class NavMenuItems extends Widget
 	 *
 	 * @param $link
 	 * @param $params
+	 *
 	 * @return string
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	private function getUrl($link,$params)
     {
@@ -193,16 +198,17 @@ class NavMenuItems extends Widget
      *
      * @param string $title
      * @param array $linkOptions
+     *
      * @return array
      */
     private function getLinkOptions($title,$linkOptions)
     {
         $arrayOptions = [];
 
-        if(!empty($linkOptions)) {
-	        /** @var array $linkOption */
-	        while($linkOption = array_shift($linkOptions)) {
-		        /** @var array $linkOption */
+        if(!empty($linkOptions))
+        {
+	        while($linkOption = array_shift($linkOptions))
+	        {
 		        foreach ($linkOption as $key => $value) {
                     $arrayOptions[$key] = $value;
                 }
@@ -218,6 +224,7 @@ class NavMenuItems extends Widget
 	 * Get menu item visibility
 	 *
 	 * @param $access
+	 *
 	 * @return bool
 	 */
 	private function getVisibility($access)
@@ -241,7 +248,7 @@ class NavMenuItems extends Widget
 	/**
 	 * @inheritdoc
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
     public function run()
     {

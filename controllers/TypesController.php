@@ -7,14 +7,17 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.3
+ * @version 0.9.4
  */
 
 namespace cinghie\menu\controllers;
 
+use Throwable;
 use Yii;
 use cinghie\menu\models\Types;
 use cinghie\menu\models\TypesSearch;
+use yii\base\InvalidParamException;
+use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -24,11 +27,11 @@ use yii\web\NotFoundHttpException;
 class TypesController extends Controller
 {
 
-    /**
-     * @inheritdoc
-     *
-     * @throws \yii\web\ForbiddenHttpException
-     */
+	/**
+	 * @inheritdoc
+	 *
+	 * @return array
+	 */
     public function behaviors()
     {
         return [
@@ -59,7 +62,7 @@ class TypesController extends Controller
      * Lists all Types models.
      *
      * @return mixed
-     * @throws \yii\base\InvalidParamException
+     * @throws InvalidParamException
      */
     public function actionIndex()
     {
@@ -77,25 +80,23 @@ class TypesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      *
      * @return mixed
-     * @throws \yii\base\InvalidParamException
+     * @throws InvalidParamException
      */
     public function actionCreate()
     {
         $model = new Types();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
             // Set Success Message
             Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been created'));
 
             return $this->redirect(['index']);
-
-        } else {
-
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+
+	    return $this->render('create', [
+		    'model' => $model,
+	    ]);
     }
 
     /**
@@ -105,8 +106,8 @@ class TypesController extends Controller
      * @param string $id
      *
      * @return mixed
-     * @throws \yii\web\NotFoundHttpException
-     * @throws \yii\base\InvalidParamException
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -119,25 +120,24 @@ class TypesController extends Controller
 
             return $this->redirect(['index']);
 
-        } else {
-
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+
+	    return $this->render('update', [
+		    'model' => $model,
+	    ]);
     }
 
-    /**
-     * Deletes an existing Types model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     *
-     * @param string $id
-     *
-     * @return mixed
-     * @throws \Exception
-     * @throws \yii\db\StaleObjectException
-     * @throws \yii\web\NotFoundHttpException
-     */
+	/**
+	 * Deletes an existing Types model.
+	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 *
+	 * @param string $id
+	 *
+	 * @return mixed
+	 * @throws NotFoundHttpException
+	 * @throws StaleObjectException
+	 * @throws Throwable
+	 */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -145,15 +145,15 @@ class TypesController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Deletes selected Settings models.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     *
-     * @return mixed
-     * @throws \Exception
-     * @throws \yii\db\StaleObjectException
-     * @throws \yii\web\NotFoundHttpException
-     */
+	/**
+	 * Deletes selected Settings models.
+	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 *
+	 * @return void
+	 * @throws NotFoundHttpException
+	 * @throws StaleObjectException
+	 * @throws Throwable
+	 */
     public function actionDeletemultiple()
     {
         $ids = Yii::$app->request->post('ids');
@@ -162,8 +162,8 @@ class TypesController extends Controller
             return;
         }
 
-        foreach ($ids as $id) {
-
+        foreach ($ids as $id)
+        {
             $model = $this->findModel($id);
 
             if ($model->delete()) {
@@ -187,9 +187,9 @@ class TypesController extends Controller
     {
         if (($model = Types::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+
+	    throw new NotFoundHttpException('The requested page does not exist.');
     }
 
 }

@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.3
+ * @version 0.9.4
  */
 
 namespace cinghie\menu\models;
@@ -20,6 +20,7 @@ use cinghie\traits\StateTrait;
 use cinghie\traits\TitleAliasTrait;
 use cinghie\traits\UserHelpersTrait;
 use cinghie\traits\ViewsHelpersTrait;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -27,18 +28,16 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property integer $menutype_id
- * @property integer $parent_id
- * @property string $title
- * @property string $alias
- * @property integer $state
- * @property string $access
  * @property string $link
- * @property string $language
  * @property string $class
  * @property string $linkOptions | example: [{"data-method":"post"}]
  * @property string $params | example: [{"id":"1","alias":"my-alias"}]
  *
+ * @property ActiveQuery $menuitems
+ * @property ActiveQuery $types
  * @property Types $menutype
+ * @property array[] $itemsSelect2
+ * @property array[] $typesSelect2
  */
 class Items extends ActiveRecord
 {
@@ -74,17 +73,17 @@ class Items extends ActiveRecord
     public function attributeLabels()
     {
         return array_merge(AccessTrait::attributeLabels(), LanguageTrait::attributeLabels(), ParentTrait::attributeLabels(), TitleAliasTrait::attributeLabels(), StateTrait::attributeLabels(), [
-	        'id' => Yii::t('menu', 'ID'),
+	        'id' => Yii::t('traits', 'ID'),
 	        'menutype_id' => Yii::t('menu', 'Menutypeid'),
-	        'class' => Yii::t('menu', 'Class'),
-	        'link' => Yii::t('menu', 'Link'),
+	        'class' => Yii::t('menu', 'Link Class'),
+	        'link' => Yii::t('traits', 'Link'),
 	        'linkOptions' => Yii::t('menu', 'Link Options'),
-	        'params' => Yii::t('menu', 'Params'),
+	        'params' => Yii::t('traits', 'Params'),
         ]);
     }
 
 	/**
-	 * @return \yii\db\ActiveQuery
+	 * @return ActiveQuery
 	 */
 	public function getMenutype()
 	{
@@ -92,7 +91,7 @@ class Items extends ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveQuery
+	 * @return ActiveQuery
 	 */
 	public function getTypes()
 	{
@@ -100,11 +99,11 @@ class Items extends ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveQuery
+	 * @return ActiveQuery
 	 */
 	public function getMenuitems()
 	{
-		return Items::find()->asArray()->all();
+		return self::find()->asArray()->all();
 	}
 
     /**
@@ -138,7 +137,7 @@ class Items extends ActiveRecord
 	    /** @var array $menuItems */
 	    foreach($menuItems as $menuItem)
         {
-        	if($menuItem['id'] != $this->id) {
+        	if($menuItem['id'] !== $this->id) {
 		        $array[$menuItem['id']] = ucwords($menuItem['title']);
 	        }
         }
@@ -153,7 +152,7 @@ class Items extends ActiveRecord
      */
     public static function find()
     {
-        return new ItemsQuery(get_called_class());
+        return new ItemsQuery(static::class);
     }
 
 }

@@ -17,7 +17,7 @@ use kartik\widgets\Select2;
 
 <div class="menu-items-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin() ?>
 
     <div class="row">
 
@@ -58,7 +58,7 @@ use kartik\widgets\Select2;
                                 'content'=>'<i class="fa fa-list"></i>'
                             ]
                         ],
-                    ]); ?>
+                    ]) ?>
 
                     <?= $form->field($model, 'link', [
                         'addon' => [
@@ -122,6 +122,6 @@ use kartik\widgets\Select2;
 
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end() ?>
 
 </div>

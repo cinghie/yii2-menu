@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-    ]); ?>
+    ]) ?>
 
     <?= $form->field($model, 'id') ?>
 
@@ -35,6 +35,6 @@ use yii\widgets\ActiveForm;
         <?= Html::resetButton(Yii::t('menu', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end() ?>
 
 </div>

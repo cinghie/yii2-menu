@@ -17,7 +17,7 @@ use yii\helpers\Html;
 
 <div class="menu-types-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin() ?>
 
     <div class="row">
 
@@ -73,6 +73,6 @@ use yii\helpers\Html;
 
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end() ?>
 
 </div>

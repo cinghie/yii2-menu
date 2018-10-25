@@ -2,9 +2,9 @@
     "name": "cinghie/yii2-menu",
     "description": "Yii2 Menu to create, manage, and delete dynamic menus in a Yii2 site.",
     "keywords": [
-	    "yii2 menu",
-	    "yii2 menù",
-	    "menù yii2"
+	"yii2 menu",
+	"yii2 menù",
+	"menù yii2"
     ],
     "homepage": "https://github.com/cinghie/yii2-menu",
     "type": "yii2-extension",
@@ -18,10 +18,11 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-		"cinghie/yii2-multilanguage": "*",
-		"cinghie/yii2-traits": "*",
-		"kartik-v/yii2-grid": "*",
-	    	"kartik-v/yii2-widgets": "*"
+	"cinghie/yii2-multilanguage": "*",
+	"cinghie/yii2-traits": "*",
+	"kartik-v/yii2-grid": "*",
+	"kartik-v/yii2-widgets": "*",
+	"cocur/slugify": "*"
     },
     "autoload": {
         "psr-4": {

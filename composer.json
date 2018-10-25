@@ -21,7 +21,7 @@
 		"cinghie/yii2-multilanguage": "*",
 		"cinghie/yii2-traits": "*",
 		"kartik-v/yii2-grid": "*",
-        "kartik-v/yii2-widgets": "*"
+	    	"kartik-v/yii2-widgets": "*"
     },
     "autoload": {
         "psr-4": {

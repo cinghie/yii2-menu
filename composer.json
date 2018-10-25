@@ -17,16 +17,16 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*",
-	"cinghie/yii2-multilanguage": "*",
-	"cinghie/yii2-traits": "*",
-	"kartik-v/yii2-grid": "*",
-	"kartik-v/yii2-widgets": "*",
-	"cocur/slugify": "*"
+	    "yiisoft/yii2": "*",
+	    "cinghie/yii2-multilanguage": "*",
+	    "cinghie/yii2-traits": "*",
+	    "kartik-v/yii2-grid": "*",
+	    "kartik-v/yii2-widgets": "*",
+	    "cocur/slugify": "*"
     },
     "autoload": {
-        "psr-4": {
-            "cinghie\\menu\\": ""
-        }
+	    "psr-4": {
+		    "cinghie\\menu\\": ""
+	    }
     }
 }

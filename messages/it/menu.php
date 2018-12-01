@@ -13,7 +13,6 @@
 return [
     'Create Menu Items' => 'Crea Voce di Menu',
     'Create Menu Types' => 'Crea Tipo di Menu',
-    'Description' => 'Descrizione',
     'Error deleting Menu Item' => 'Errore nella cancellazione della Voce di Menu',
     'Error deleting Menu Type' => 'Errore nella cancellazione del Tipo di Menu',
     'Link Class' => 'Classe del Link',

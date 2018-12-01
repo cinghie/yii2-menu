@@ -15,6 +15,9 @@ use cinghie\traits\migrations\Migration;
 class m160103_115801_create_menu_types extends Migration
 {
 
+	/**
+	 * @inheritdoc
+	 */
     public function up()
     {
         // Create Table menu_types
@@ -34,6 +37,9 @@ class m160103_115801_create_menu_types extends Migration
         ]);
     }
 
+	/**
+	 * @inheritdoc
+	 */
     public function down()
     {
         $this->dropTable('{{%menu_types}}');

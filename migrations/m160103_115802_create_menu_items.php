@@ -15,6 +15,9 @@ use cinghie\traits\migrations\Migration;
 class m160103_115802_create_menu_items extends Migration
 {
 
+	/**
+	 * @inheritdoc
+	 */
     public function up()
     {
         // Create Table menu_items
@@ -76,6 +79,9 @@ class m160103_115802_create_menu_items extends Migration
 	    $this->insert('{{%menu_items}}', [ 'id' => 7, 'menutype_id' => 1, 'title' => 'Logout', 'alias' => 'logout', 'link' => '/logout', 'access' => 'registered', 'linkOptions' => '[{"data-method":"post"}]', 'parent_id' => 1, 'state' => 1 ]);
     }
 
+	/**
+	 * @inheritdoc
+	 */
     public function down()
     {
         $this->dropTable('{{%menu_items}}');

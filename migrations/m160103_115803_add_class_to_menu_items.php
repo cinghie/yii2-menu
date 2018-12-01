@@ -15,11 +15,17 @@ use cinghie\traits\migrations\Migration;
 class m160103_115803_add_class_to_menu_items extends Migration
 {
 
+	/**
+	 * @inheritdoc
+	 */
     public function up()
     {
 	    $this->addColumn('{{%menu_items}}', 'class', $this->string(24)->defaultValue('')->after('link'));
     }
 
+	/**
+	 * @inheritdoc
+	 */
     public function down()
     {
 	    $this->dropColumn('{{%menu_items}}','class');

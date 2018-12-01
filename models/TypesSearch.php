@@ -21,6 +21,7 @@ use yii\data\ActiveDataProvider;
  */
 class TypesSearch extends Types
 {
+
     /**
      * @inheritdoc
      */

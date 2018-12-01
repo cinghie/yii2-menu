@@ -19,10 +19,7 @@
     "require": {
 	    "yiisoft/yii2": "~2.0.14",
 	    "cinghie/yii2-multilanguage": "@dev",
-	    "cinghie/yii2-traits": "@dev",
-        "kartik-v/yii2-grid": "^3.2.8",
-        "kartik-v/yii2-widgets": "^3.4.1",
-	    "cocur/slugify": "^3.1"
+	    "cinghie/yii2-traits": "@dev"
     },
     "autoload": {
 	    "psr-4": {

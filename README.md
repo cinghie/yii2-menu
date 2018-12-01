@@ -59,22 +59,11 @@ URL
   <li>Menù Items with Pretty Urls: PathToApp/menu/items/index</li>
 </ul>
 
-Changelog
---------------
-
-<ul>
-  <li>Version 0.9.3 - Fix Alias generation, Fix Trait use, Fix Child generation</li>
-  <li>Version 0.9.2 - Implementing ParentTrait</li>
-  <li>Version 0.9.1 - Adding Title and Class to Link</li>
-  <li>Version 0.9.0 - Implementing Yii2 Traits: https://github.com/cinghie/yii2-traits</li>
-  <li>Version 0.8.1 - Purge code</li>
-  <li>Version 0.8.0 - Initial Releases</li>
-</ul>
-
 Libraries Needed
 --------------
 
 <ul> 
+  <li>cocur/slugify: https://github.com/cocur/slugify</li>
   <li>Yii2 Grid: https://github.com/kartik-v/yii2-grid</li>
   <li>Yii2 Multilanguage: https://github.com/cinghie/yii2-multilanguage</li>
   <li>Yii2 Traits: https://github.com/cinghie/yii2-traits</li></li>

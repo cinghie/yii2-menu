@@ -6,6 +6,7 @@
 
 use kartik\widgets\ActiveForm;
 use kartik\widgets\Select2;
+use insolita\iconpicker\Iconpicker;
 
 ?>
 
@@ -106,13 +107,14 @@ use kartik\widgets\Select2;
 		                            ]
 	                            ]) ?>
 
-			                    <?= $form->field($model, 'icon', [
-				                    'addon' => [
-					                    'prepend' => [
-						                    'content'=>'<i class="fa fa-font-awesome"></i>'
-					                    ]
-				                    ]
-			                    ])->textInput(['maxlength' => true]) ?>
+			                    <?= $form->field($model, 'icon')->widget(Iconpicker::class, [
+			                        'iconset' => 'fontawesome',
+                                    'clientOptions' => [
+                                        'rows' => 12,
+                                        'cols' => 12,
+                                        'placement' => 'left'
+                                    ]
+		                        ]) ?>
 
                             </div>
 

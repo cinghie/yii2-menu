@@ -137,7 +137,9 @@ class Items extends ActiveRecord
 	    /** @var array $menuItems */
 	    foreach($menuItems as $menuItem)
         {
-        	if($menuItem['id'] !== $this->id) {
+	        if((int)$menuItem['id'] === 1) {
+		        $array[$menuItem['id']] = Yii::t('menu','Main Item');
+	        } elseif($menuItem['id'] !== $this->id) {
 		        $array[$menuItem['id']] = ucwords($menuItem['title']);
 	        }
         }

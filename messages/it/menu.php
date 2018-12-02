@@ -17,6 +17,7 @@ return [
     'Error deleting Menu Type' => 'Errore nella cancellazione del Tipo di Menu',
     'Link Class' => 'Classe del Link',
     'Link Options' => 'Opzioni Link',
+    'Main Item' => 'Voce Principale',
     'Menu Items' => 'Voci di Menu',
     'Menu Types' => 'Tipi di Menu',
     'Menutype' => 'Codice Menu',

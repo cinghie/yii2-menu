@@ -35,9 +35,9 @@ use kartik\widgets\Select2;
 
                     </div>
 
-                    <div class="separator"></div>
-
                 </div>
+
+                <div class="separator"></div>
 
                 <div class="row">
 
@@ -45,38 +45,29 @@ use kartik\widgets\Select2;
 
                         <?= $model->getTitleWidget($form) ?>
 
-                        <?= $form->field($model, 'menutype_id')->widget(Select2::className(), [
-                            'data' => $model->getTypesSelect2(),
-                            'addon' => [
-                                'prepend' => [
-                                    'content'=>'<i class="fa fa-list"></i>'
-                                ]
-                            ],
-                        ]) ?>
+                        <?= $model->getAliasWidget($form) ?>
 
                         <?= $form->field($model, 'link', [
-                            'addon' => [
-                                'prepend' => [
-                                    'content'=>'<i class="glyphicon glyphicon-link"></i>'
-                                ]
-                            ]
+	                        'addon' => [
+		                        'prepend' => [
+			                        'content'=>'<i class="glyphicon glyphicon-link"></i>'
+		                        ]
+	                        ]
                         ])->textInput(['maxlength' => true]) ?>
 
                     </div>
 
                     <div class="col-lg-4">
 
-                        <?= $model->getAliasWidget($form) ?>
-
                         <?= $model->getParentWidget($form,$model->getItemsSelect2()) ?>
 
-                        <?= $form->field($model, 'class', [
-                            'addon' => [
-                                'prepend' => [
-                                    'content'=>'<i class="fa fa-css3"></i>'
-                                ]
-                            ]
-                        ])->textInput(['maxlength' => true]) ?>
+	                    <?= $form->field($model, 'class', [
+		                    'addon' => [
+			                    'prepend' => [
+				                    'content'=>'<i class="fa fa-css3"></i>'
+			                    ]
+		                    ]
+	                    ])->textInput(['maxlength' => true]) ?>
 
                         <?= $form->field($model, 'linkOptions', [
                             'addon' => [
@@ -86,17 +77,40 @@ use kartik\widgets\Select2;
                             ],
                         ])->textarea(['rows' => 4]) ?>
 
-                        <div class="alert alert-info">Example: [{"data-method":"post"}]</div>
+                        <div class="alert alert-info">
+                            <?= Yii::t('traits','Example') ?>: [{"data-method":"post"}]
+                        </div>
 
                     </div>
 
                     <div class="col-lg-4">
 
-                        <?= $model->getStateWidget($form) ?>
+                        <div class="row">
 
-                        <?= $model->getAccessWidget($form) ?>
+                            <div class="col-lg-6">
 
-                        <?= $model->getLanguageWidget($form) ?>
+	                            <?= $form->field($model, 'menutype_id')->widget(Select2::className(), [
+		                            'data' => $model->getTypesSelect2(),
+		                            'addon' => [
+			                            'prepend' => [
+				                            'content'=>'<i class="fa fa-list"></i>'
+			                            ]
+		                            ]
+	                            ]) ?>
+
+	                            <?= $model->getAccessWidget($form) ?>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+	                            <?= $model->getStateWidget($form) ?>
+
+	                            <?= $model->getLanguageWidget($form) ?>
+
+                            </div>
+
+                        </div>
 
                         <?= $form->field($model, 'params', [
                             'addon' => [
@@ -106,7 +120,9 @@ use kartik\widgets\Select2;
                             ]
                         ])->textarea(['rows' => 4]) ?>
 
-                        <div class="alert alert-info">Example: [{"id":"1","alias":"my-alias"}]</div>
+                        <div class="alert alert-info">
+		                    <?= Yii::t('traits','Example') ?>: [{"id":"1","alias":"my-alias"}]
+                        </div>
 
                     </div>
 

@@ -61,13 +61,21 @@ use kartik\widgets\Select2;
 
                         <?= $model->getParentWidget($form,$model->getItemsSelect2()) ?>
 
-	                    <?= $form->field($model, 'class', [
-		                    'addon' => [
-			                    'prepend' => [
-				                    'content'=>'<i class="fa fa-css3"></i>'
-			                    ]
-		                    ]
-	                    ])->textInput(['maxlength' => true]) ?>
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+			                    <?= $model->getAccessWidget($form) ?>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+			                    <?= $model->getLanguageWidget($form) ?>
+
+                            </div>
+
+                        </div>
 
                         <?= $form->field($model, 'linkOptions', [
                             'addon' => [
@@ -98,7 +106,13 @@ use kartik\widgets\Select2;
 		                            ]
 	                            ]) ?>
 
-	                            <?= $model->getAccessWidget($form) ?>
+			                    <?= $form->field($model, 'icon', [
+				                    'addon' => [
+					                    'prepend' => [
+						                    'content'=>'<i class="fa fa-font-awesome"></i>'
+					                    ]
+				                    ]
+			                    ])->textInput(['maxlength' => true]) ?>
 
                             </div>
 
@@ -106,7 +120,13 @@ use kartik\widgets\Select2;
 
 	                            <?= $model->getStateWidget($form) ?>
 
-	                            <?= $model->getLanguageWidget($form) ?>
+			                    <?= $form->field($model, 'class', [
+				                    'addon' => [
+					                    'prepend' => [
+						                    'content'=>'<i class="fa fa-css3"></i>'
+					                    ]
+				                    ]
+			                    ])->textInput(['maxlength' => true]) ?>
 
                             </div>
 

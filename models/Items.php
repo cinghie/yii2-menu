@@ -29,6 +29,7 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property integer $menutype_id
  * @property string $link
+ * @property string $icon | example: fa fa-bars
  * @property string $class
  * @property string $linkOptions | example: [{"data-method":"post"}]
  * @property string $params | example: [{"id":"1","alias":"my-alias"}]
@@ -61,6 +62,7 @@ class Items extends ActiveRecord
             [['menutype_id', 'parent_id', 'title', 'access', 'language', 'link', 'state'], 'required'],
             [['menutype_id'], 'integer'],
             [['class'], 'string', 'max' => 24],
+            [['icon'], 'string', 'max' => 32],
             [['link'], 'string', 'max' => 1024],
 	        [['params','linkOptions'], 'string'],
             [['menutype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutype_id' => 'id']],
@@ -76,6 +78,7 @@ class Items extends ActiveRecord
 	        'id' => Yii::t('traits', 'ID'),
 	        'menutype_id' => Yii::t('menu', 'Menutypeid'),
 	        'class' => Yii::t('menu', 'Link Class'),
+	        'icon' => Yii::t('traits', 'Icon'),
 	        'link' => Yii::t('traits', 'Link'),
 	        'linkOptions' => Yii::t('menu', 'Link Options'),
 	        'params' => Yii::t('traits', 'Params'),

@@ -100,7 +100,7 @@ class ItemsController extends Controller
                 // Set Success Message
                 Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been created'));
 
-                return $this->redirect(['index']);
+	            return $this->redirect(['update', 'id' => $model->id]);
             }
 
 	        // Set Error Message
@@ -109,7 +109,6 @@ class ItemsController extends Controller
 	        return $this->render('create', [
 		        'model' => $model,
 	        ]);
-
         }
 
 	    return $this->render('create', [
@@ -142,7 +141,9 @@ class ItemsController extends Controller
                 // Set Success Message
                 Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Item has been updated'));
 
-                return $this->redirect(['index']);
+	            return $this->render('update', [
+		            'model' => $model,
+	            ]);
             }
 
 	        // Set Error Message
@@ -151,7 +152,6 @@ class ItemsController extends Controller
 	        return $this->render('update', [
 		        'model' => $model,
 	        ]);
-
         }
 
 	    return $this->render('update', [

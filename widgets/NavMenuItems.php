@@ -122,10 +122,13 @@ class NavMenuItems extends Widget
 
         foreach($menuItems as $menuItem)
         {
+        	// Load MenuItems Object
+	        $menuItemObject = Items::findOne($menuItem['id']);
+
             // Check language
-            if($this->checkLanguageMenu($menuItem['language']))
+            if($menuItemObject !== null && $this->checkLanguageMenu($menuItem['language']))
             {
-                $array[$i]['label'] = $menuItem['title'];
+                $array[$i]['label'] = $menuItemObject->getMenuLabel();
                 $array[$i]['url'] = $this->getUrl([$menuItem['link']],$menuItem['params']);
                 $array[$i]['linkOptions'] = $this->getLinkOptions($menuItem['title'],json_decode($menuItem['linkOptions'], true));
                 $i++;

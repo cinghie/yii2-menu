@@ -30,6 +30,7 @@ use yii\db\ActiveRecord;
  * @property integer $menutype_id
  * @property string $link
  * @property string $icon | example: fa fa-bars
+ * @property integer $icon_type | 0 as Only Text, 1 as Icon + Text, 2 as Text + Icon, 3 Only Icon
  * @property string $class
  * @property string $linkOptions | example: [{"data-method":"post"}]
  * @property string $params | example: [{"id":"1","alias":"my-alias"}]
@@ -60,7 +61,7 @@ class Items extends ActiveRecord
     {
         return array_merge(AccessTrait::rules(), LanguageTrait::rules(), ParentTrait::rules(), TitleAliasTrait::rules(), StateTrait::rules(), [
             [['menutype_id', 'parent_id', 'title', 'access', 'language', 'link', 'state'], 'required'],
-            [['menutype_id'], 'integer'],
+            [['menutype_id','icon_type'], 'integer'],
             [['class'], 'string', 'max' => 24],
             [['icon'], 'string', 'max' => 32],
             [['link'], 'string', 'max' => 1024],
@@ -79,6 +80,7 @@ class Items extends ActiveRecord
 	        'menutype_id' => Yii::t('menu', 'Menutypeid'),
 	        'class' => Yii::t('menu', 'Link Class'),
 	        'icon' => Yii::t('traits', 'Icon'),
+	        'icon_type' => Yii::t('menu', 'Icon Type'),
 	        'link' => Yii::t('traits', 'Link'),
 	        'linkOptions' => Yii::t('menu', 'Link Options'),
 	        'params' => Yii::t('traits', 'Params'),

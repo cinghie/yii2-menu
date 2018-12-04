@@ -115,7 +115,7 @@ use cinghie\iconpicker\Iconpicker;
 
                         <div class="row">
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-2">
 
 			                    <?= $form->field($model, 'icon')->widget(Iconpicker::class, [
 				                    'iconset' => 'fontawesome',
@@ -125,6 +125,19 @@ use cinghie\iconpicker\Iconpicker;
 					                    'placement' => 'left'
 				                    ]
 			                    ]) ?>
+
+                            </div>
+
+                            <div class="col-lg-4">
+
+		                        <?= $form->field($model, 'icon_type')->widget(Select2::className(), [
+			                        'data' => [
+			                            0 => Yii::t('menu','Only Text'),
+			                            1 => Yii::t('menu','Icon + Text'),
+			                            2 => Yii::t('menu','Text + Icon'),
+			                            3 => Yii::t('menu','Only Icon')
+                                    ]
+		                        ])  ?>
 
                             </div>
 

@@ -21,6 +21,7 @@ class m160103_115804_add_icon_to_menu_items extends Migration
     public function up()
     {
 	    $this->addColumn('{{%menu_items}}', 'icon', $this->string(32)->defaultValue(null)->after('link'));
+	    $this->addColumn('{{%menu_items}}', 'icon_type', $this->tinyInteger(1)->defaultValue(0)->after('icon'));
     }
 
 	/**
@@ -29,6 +30,7 @@ class m160103_115804_add_icon_to_menu_items extends Migration
     public function down()
     {
 	    $this->dropColumn('{{%menu_items}}','icon');
+	    $this->dropColumn('{{%menu_items}}','icon_type');
     }
 
 }

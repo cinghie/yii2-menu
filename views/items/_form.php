@@ -6,7 +6,7 @@
 
 use kartik\widgets\ActiveForm;
 use kartik\widgets\Select2;
-use insolita\iconpicker\Iconpicker;
+use cinghie\iconpicker\Iconpicker;
 
 ?>
 

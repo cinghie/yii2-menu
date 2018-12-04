@@ -111,6 +111,26 @@ class Items extends ActiveRecord
 		return self::find()->asArray()->all();
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getMenuLabel()
+	{
+		if($this->icon_type === 1  && $this->icon !== null) {
+			return '<i class="fa '.$this->icon.'" aria-hidden="true"></i> '.$this->title;
+		}
+
+		if($this->icon_type === 2  && $this->icon !== null) {
+			return $this->title.' <i class="fa '.$this->icon.'" aria-hidden="true"></i>';
+		}
+
+		if($this->icon_type === 3  && $this->icon !== null) {
+			return '<i class="fa '.$this->icon.'" aria-hidden="true"></i>';
+		}
+
+		return $this->title;
+	}
+
     /**
      * Return Types Select2
      *

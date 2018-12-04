@@ -159,7 +159,7 @@ class NavMenuItems extends Widget
         }
 
         $this->menuItems[] = [
-            'label' => $menuItem->title,
+            'label' => $menuItem->getMenuLabel(),
             'linkOptions' => $arrayOptions,
             'items' => $childs,
             'url' => $url,
@@ -254,7 +254,8 @@ class NavMenuItems extends Widget
     {
         return Nav::widget([
             'options' => $this->options,
-            'items' => $this->menuItems
+            'items' => $this->menuItems,
+            'encodeLabels' => false,
         ]);
     }
 

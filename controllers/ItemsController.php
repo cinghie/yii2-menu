@@ -95,6 +95,11 @@ class ItemsController extends Controller
             // If alias is not set, generate it
 	        $model->setAlias($post['Items'],'title');
 
+	        // Set Empty as null
+	        if($model->icon === 'empty') {
+		        $model->icon = null;
+	        }
+
             if( $model->save() )
             {
                 // Set Success Message
@@ -135,6 +140,11 @@ class ItemsController extends Controller
         {
 	        // If alias is not set, generate it
 	        $model->setAlias($post['Items'],'title');
+
+	        // Set Empty as null
+	        if($model->icon === 'empty') {
+		        $model->icon = null;
+	        }
 
             if($model->save())
             {

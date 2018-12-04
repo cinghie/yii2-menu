@@ -200,7 +200,7 @@ use cinghie\iconpicker\Iconpicker;
                         ])->textarea(['rows' => 4]) ?>
 
                         <div class="alert alert-info">
-		                    <?= Yii::t('traits','Example') ?>: [{"id":"1","alias":"my-alias"}]
+		                    <?= Yii::t('traits','Example') ?>: [{"id":"1","alias":"my-alias","cat":"mycategory"}]
                         </div>
 
                     </div>

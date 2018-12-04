@@ -44,51 +44,13 @@ use insolita\iconpicker\Iconpicker;
 
                     <div class="col-lg-4">
 
-                        <?= $model->getTitleWidget($form) ?>
-
-                        <?= $model->getAliasWidget($form) ?>
-
-                        <?= $form->field($model, 'link', [
-	                        'addon' => [
-		                        'prepend' => [
-			                        'content'=>'<i class="glyphicon glyphicon-link"></i>'
-		                        ]
-	                        ]
-                        ])->textInput(['maxlength' => true]) ?>
+	                    <?= $model->getTitleWidget($form) ?>
 
                     </div>
 
                     <div class="col-lg-4">
 
-                        <?= $model->getParentWidget($form,$model->getItemsSelect2()) ?>
-
-                        <div class="row">
-
-                            <div class="col-lg-6">
-
-			                    <?= $model->getAccessWidget($form) ?>
-
-                            </div>
-
-                            <div class="col-lg-6">
-
-			                    <?= $model->getLanguageWidget($form) ?>
-
-                            </div>
-
-                        </div>
-
-                        <?= $form->field($model, 'linkOptions', [
-                            'addon' => [
-                                'prepend' => [
-                                    'content'=>'<i class="fa fa-external-link-square"></i>'
-                                ]
-                            ],
-                        ])->textarea(['rows' => 4]) ?>
-
-                        <div class="alert alert-info">
-                            <?= Yii::t('traits','Example') ?>: [{"data-method":"post"}]
-                        </div>
+	                    <?= $model->getParentWidget($form,$model->getItemsSelect2()) ?>
 
                     </div>
 
@@ -107,20 +69,66 @@ use insolita\iconpicker\Iconpicker;
 		                            ]
 	                            ]) ?>
 
-			                    <?= $form->field($model, 'icon')->widget(Iconpicker::class, [
-			                        'iconset' => 'fontawesome',
-                                    'clientOptions' => [
-                                        'rows' => 12,
-                                        'cols' => 12,
-                                        'placement' => 'left'
-                                    ]
-		                        ]) ?>
-
                             </div>
 
                             <div class="col-lg-6">
 
 	                            <?= $model->getStateWidget($form) ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+
+	                    <?= $model->getAliasWidget($form) ?>
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+			                    <?= $model->getAccessWidget($form) ?>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+			                    <?= $model->getLanguageWidget($form) ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+			                    <?= $form->field($model, 'icon')->widget(Iconpicker::class, [
+				                    'iconset' => 'fontawesome',
+				                    'clientOptions' => [
+					                    'rows' => 12,
+					                    'cols' => 12,
+					                    'placement' => 'left'
+				                    ]
+			                    ]) ?>
+
+                            </div>
+
+                            <div class="col-lg-6">
 
 			                    <?= $form->field($model, 'class', [
 				                    'addon' => [
@@ -133,6 +141,42 @@ use insolita\iconpicker\Iconpicker;
                             </div>
 
                         </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+
+                        <?= $form->field($model, 'link', [
+	                        'addon' => [
+		                        'prepend' => [
+			                        'content'=>'<i class="glyphicon glyphicon-link"></i>'
+		                        ]
+	                        ]
+                        ])->textInput(['maxlength' => true]) ?>
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <?= $form->field($model, 'linkOptions', [
+                            'addon' => [
+                                'prepend' => [
+                                    'content'=>'<i class="fa fa-external-link-square"></i>'
+                                ]
+                            ],
+                        ])->textarea(['rows' => 4]) ?>
+
+                        <div class="alert alert-info">
+                            <?= Yii::t('traits','Example') ?>: [{"data-method":"post"}]
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
 
                         <?= $form->field($model, 'params', [
                             'addon' => [

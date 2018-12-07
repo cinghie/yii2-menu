@@ -86,6 +86,16 @@ $this->registerJs('$(document).ready(function()
 				}
 			],
 			[
+				'attribute' => 'parent_id',
+				'format' => 'html',
+				'hAlign' => 'center',
+				'value' => function ($model) {
+					/** @var $model cinghie\menu\models\Items */
+					return $model->getParentGridView('title','/menu/items/update', 1);
+				},
+				'width' => '10%',
+			],
+			[
 				'attribute' => 'link',
 				'hAlign' => 'center',
 				'width' => '20%',
@@ -105,22 +115,22 @@ $this->registerJs('$(document).ready(function()
 				'width' => '10%',
 			],
 			[
-				'attribute' => 'parent_id',
-				'format' => 'html',
-				'hAlign' => 'center',
-				'value' => function ($model) {
-					/** @var $model cinghie\menu\models\Items */
-					return $model->getParentGridView('title','/menu/items/update', 1);
-				},
-				'width' => '10%',
-			],
-			[
 				'attribute' => 'access',
 				'format' => 'html',
 				'hAlign' => 'center',
 				'value' => function ($model) {
 					/** @var $model cinghie\menu\models\Items */
 					return $model->getAccessGridView();
+				}
+			],
+			[
+				'attribute' => 'theme',
+				'hAlign' => 'center',
+				'value' => function ($model) {
+					/** @var $model cinghie\menu\models\Items */
+					if($model->theme) {
+						return Yii::t('traits',ucwords($model->theme));
+                    }
 				}
 			],
 			[

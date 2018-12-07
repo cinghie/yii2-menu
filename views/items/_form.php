@@ -50,7 +50,28 @@ use cinghie\iconpicker\Iconpicker;
 
                     <div class="col-lg-4">
 
-	                    <?= $model->getParentWidget($form,$model->getItemsSelect2()) ?>
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+	                            <?= $model->getParentWidget($form,$model->getItemsSelect2()) ?>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+	                            <?= $form->field($model, 'theme')->widget(Select2::className(), [
+		                            'data' => $model->getThemeSelect2(),
+		                            'addon' => [
+			                            'prepend' => [
+				                            'content'=>'<i class="glyphicon glyphicon-blackboard"></i>'
+			                            ]
+		                            ]
+	                            ]) ?>
+
+                            </div>
+
+                        </div>
 
                     </div>
 

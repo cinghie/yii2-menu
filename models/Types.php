@@ -67,6 +67,21 @@ class Types extends ActiveRecord
     }
 
 	/**
+	 * @return string
+	 */
+	public function getThemeClass()
+    {
+    	switch($this->theme)
+	    {
+		    case 'vertical':
+		    	return 'nav-pills nav-stacked';
+		    	break;
+		    default:
+		    	return 'navbar-nav';
+	    }
+    }
+
+	/**
 	 * @return array
 	 */
 	public function getThemeSelect2()

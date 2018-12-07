@@ -15,17 +15,32 @@ namespace cinghie\menu\widgets;
 use Exception;
 use Yii;
 use cinghie\menu\models\Items;
+use cinghie\menu\models\Types;
 use yii\bootstrap\Nav;
 use yii\bootstrap\Widget;
 use yii\helpers\Url;
 
 class NavMenuItems extends Widget
 {
+	/** @var int $menuId */
     public $menuId;
+
+	/** @var Types $menuType */
+    public $menuType;
+
+	/** @var array $menuItems */
     public $menuItems;
+
+	/** @var string $menuOrderBy */
     public $menuOrderBy;
+
+	/** @var string $menuOrderType */
     public $menuOrderType;
+
+	/** @var string $childOrderBy */
     public $childOrderBy;
+
+	/** @var string $childOrderType */
     public $childOrderType;
 
 	/**
@@ -37,16 +52,19 @@ class NavMenuItems extends Widget
     {
         parent::init();
 
-        // set default Orderby
+        // Set Menu Type
+
+
+        // Set default Menu Orderby
         if($this->menuOrderBy === '' || $this->menuOrderBy === null) { $this->menuOrderBy = 'id'; }
 
-        // set default Orderby
+        // Set default Menu Order Type
         if($this->menuOrderType === '' || $this->menuOrderType === null) { $this->menuOrderType = SORT_ASC; }
 
-        // set default Orderby
+        // Set default Child Orderby
         if($this->childOrderBy === '' || $this->childOrderBy === null) { $this->childOrderBy = 'id'; }
 
-        // set default Orderby
+        // Set default Child Order Type
         if($this->childOrderType === '' || $this->childOrderType === null) { $this->childOrderType = SORT_ASC; }
 
         if($this->menuId === null)
@@ -255,8 +273,13 @@ class NavMenuItems extends Widget
 	 */
     public function run()
     {
+    	$menuTypes = new Types();
+
+    	$options = $this->options;
+    	$options['class'] = $menuTypes->getThemeClass().' '.$options['class'];
+
         return Nav::widget([
-            'options' => $this->options,
+            'options' => $options,
             'items' => $this->menuItems,
             'encodeLabels' => false,
         ]);

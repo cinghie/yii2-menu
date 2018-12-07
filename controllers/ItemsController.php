@@ -36,7 +36,7 @@ class ItemsController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::class,
+                'class' => AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,
@@ -49,7 +49,7 @@ class ItemsController extends Controller
                 }
             ],
             'verbs' => [
-                'class' => VerbFilter::class,
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'activemultiple' => ['POST'],
                     'changestate' => ['POST'],

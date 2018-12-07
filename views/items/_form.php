@@ -60,7 +60,7 @@ use cinghie\iconpicker\Iconpicker;
 
                             <div class="col-lg-6">
 
-	                            <?= $form->field($model, 'menutype_id')->widget(Select2::class, [
+	                            <?= $form->field($model, 'menutype_id')->widget(Select2::className(), [
 		                            'data' => $model->getTypesSelect2(),
 		                            'addon' => [
 			                            'prepend' => [
@@ -130,7 +130,7 @@ use cinghie\iconpicker\Iconpicker;
 
                             <div class="col-lg-4">
 
-		                        <?= $form->field($model, 'icon_type')->widget(Select2::class, [
+		                        <?= $form->field($model, 'icon_type')->widget(Select2::className(), [
 			                        'data' => [
 			                            0 => Yii::t('menu','Only Text'),
 			                            1 => Yii::t('menu','Icon + Text'),

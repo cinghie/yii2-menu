@@ -66,7 +66,7 @@ class Items extends ActiveRecord
             [['icon'], 'string', 'max' => 32],
             [['link'], 'string', 'max' => 1024],
 	        [['params','linkOptions'], 'string'],
-            [['menutype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['menutype_id' => 'id']],
+            [['menutype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Types::className(), 'targetAttribute' => ['menutype_id' => 'id']],
         ]);
     }
 
@@ -92,7 +92,7 @@ class Items extends ActiveRecord
 	 */
 	public function getMenutype()
 	{
-		return $this->hasOne(Types::class, ['id' => 'menutype_id']);
+		return $this->hasOne(Types::className(), ['id' => 'menutype_id']);
 	}
 
 	/**

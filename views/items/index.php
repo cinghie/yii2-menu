@@ -124,16 +124,6 @@ $this->registerJs('$(document).ready(function()
 				}
 			],
 			[
-				'attribute' => 'theme',
-				'hAlign' => 'center',
-				'value' => function ($model) {
-					/** @var $model cinghie\menu\models\Items */
-					if($model->theme) {
-						return Yii::t('traits',ucwords($model->theme));
-                    }
-				}
-			],
-			[
 				'attribute' => 'language',
 				'width' => '5%',
 				'hAlign' => 'center',

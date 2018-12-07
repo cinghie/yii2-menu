@@ -29,7 +29,7 @@ class TypesSearch extends Types
     {
         return [
             [['id'], 'integer'],
-            [['menutype', 'title', 'description'], 'safe'],
+            [['menutype', 'title', 'description','theme'], 'safe'],
         ];
     }
 
@@ -73,6 +73,7 @@ class TypesSearch extends Types
 
         $query->andFilterWhere(['like', 'menutype', $this->menutype])
             ->andFilterWhere(['like', 'title', $this->title])
+	        ->andFilterWhere(['like', 'theme', $this->theme])
             ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;

@@ -90,6 +90,13 @@ $this->registerJs('$(document).ready(function()
 				'hAlign' => 'center',
 			],
 			[
+				'attribute' => 'theme',
+				'hAlign' => 'center',
+				'value' => function ($model) {
+					return Yii::t('traits',ucwords($model->theme));
+				}
+			],
+			[
 				'attribute' => 'description',
 				'hAlign' => 'center',
 			],

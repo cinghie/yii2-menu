@@ -5,6 +5,7 @@
  */
 
 use kartik\widgets\ActiveForm;
+use kartik\widgets\Select2;
 
 ?>
 
@@ -44,19 +45,40 @@ use kartik\widgets\ActiveForm;
 
                         <?= $model->getTitleWidget($form) ?>
 
-                        <?= $form->field($model, 'menutype', [
-                            'addon' => [
-                                'prepend' => [
-                                    'content'=>'<i class="glyphicon glyphicon-plus"></i>'
-                                ]
-                            ],
-                        ])->textInput(['maxlength' => true]) ?>
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+	                            <?= $form->field($model, 'menutype', [
+		                            'addon' => [
+			                            'prepend' => [
+				                            'content'=>'<i class="glyphicon glyphicon-plus"></i>'
+			                            ]
+		                            ],
+	                            ])->textInput(['maxlength' => true]) ?>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+	                            <?= $form->field($model, 'theme')->widget(Select2::className(), [
+		                            'data' => $model->getThemeSelect2(),
+		                            'addon' => [
+			                            'prepend' => [
+				                            'content'=>'<i class="glyphicon glyphicon-blackboard"></i>'
+			                            ]
+		                            ]
+	                            ]) ?>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                     <div class="col-lg-6">
 
-                        <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => '4']) ?>
+                        <?= $form->field($model, 'description')->textarea(['maxlength' => true, 'rows' => '5']) ?>
 
                     </div>
 

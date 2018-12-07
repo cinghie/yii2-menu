@@ -62,7 +62,7 @@ class Items extends ActiveRecord
         return array_merge(AccessTrait::rules(), LanguageTrait::rules(), ParentTrait::rules(), TitleAliasTrait::rules(), StateTrait::rules(), [
             [['menutype_id', 'parent_id', 'title', 'access', 'language', 'link', 'state'], 'required'],
             [['menutype_id','icon_type'], 'integer'],
-            [['class','theme'], 'string', 'max' => 24],
+            [['class'], 'string', 'max' => 24],
             [['icon'], 'string', 'max' => 32],
             [['link'], 'string', 'max' => 1024],
 	        [['params','linkOptions'], 'string'],
@@ -84,7 +84,6 @@ class Items extends ActiveRecord
 	        'link' => Yii::t('traits', 'Link'),
 	        'linkOptions' => Yii::t('menu', 'Link Options'),
 	        'params' => Yii::t('traits', 'Params'),
-	        'theme' => Yii::t('traits', 'Theme'),
         ]);
     }
 
@@ -171,14 +170,6 @@ class Items extends ActiveRecord
         }
 
         return $array;
-    }
-
-    public function getThemeSelect2()
-    {
-    	return [
-    		'horizontal' => Yii::t('traits','Horizontal'),
-    		'vertical' => Yii::t('traits','Vertical')
-	    ];
     }
 
     /**

@@ -46,7 +46,7 @@ class Types extends ActiveRecord
     {
         return [
             [['menutype', 'title'], 'required'],
-            [['menutype'], 'string', 'max' => 24],
+            [['menutype','theme'], 'string', 'max' => 24],
             [['title'], 'string', 'max' => 48],
             [['description'], 'string', 'max' => 255],
             [['menutype'], 'unique'],
@@ -62,8 +62,20 @@ class Types extends ActiveRecord
             'id' => Yii::t('traits', 'ID'),
             'menutype' => Yii::t('menu', 'Menutype'),
             'description' => Yii::t('traits', 'Description'),
+            'theme' => Yii::t('traits', 'Theme'),
         ];
     }
+
+	/**
+	 * @return array
+	 */
+	public function getThemeSelect2()
+	{
+		return [
+			'horizontal' => Yii::t('traits','Horizontal'),
+			'vertical' => Yii::t('traits','Vertical')
+		];
+	}
 
     /**
      * @inheritdoc

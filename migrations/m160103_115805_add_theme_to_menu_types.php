@@ -12,7 +12,7 @@
 
 use cinghie\traits\migrations\Migration;
 
-class m160103_115805_add_theme_to_menu_items extends Migration
+class m160103_115805_add_theme_to_menu_types extends Migration
 {
 
 	/**
@@ -20,7 +20,7 @@ class m160103_115805_add_theme_to_menu_items extends Migration
 	 */
     public function up()
     {
-	    $this->addColumn('{{%menu_items}}', 'theme', $this->string(24)->defaultValue('horizontal')->after('link'));
+	    $this->addColumn('{{%menu_types}}', 'theme', $this->string(24)->defaultValue('horizontal')->after('title'));
     }
 
 	/**
@@ -28,7 +28,7 @@ class m160103_115805_add_theme_to_menu_items extends Migration
 	 */
     public function down()
     {
-	    $this->dropColumn('{{%menu_items}}','theme');
+	    $this->dropColumn('{{%menu_types}}','theme');
     }
 
 }

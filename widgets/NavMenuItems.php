@@ -53,7 +53,10 @@ class NavMenuItems extends Widget
         parent::init();
 
         // Set Menu Type
-
+		if($this->menuId) {
+			$menu = new Types();
+			$this->menuType = $menu::findOne($this->menuId);
+		}
 
         // Set default Menu Orderby
         if($this->menuOrderBy === '' || $this->menuOrderBy === null) { $this->menuOrderBy = 'id'; }
@@ -273,10 +276,8 @@ class NavMenuItems extends Widget
 	 */
     public function run()
     {
-    	$menuTypes = new Types();
-
     	$options = $this->options;
-    	$options['class'] = $menuTypes->getThemeClass().' '.$options['class'];
+    	$options['class'] = $this->menuType->getThemeClass().' '.$options['class'];
 
         return Nav::widget([
             'options' => $options,

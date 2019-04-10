@@ -1,6 +1,12 @@
 Yii2 Menù
 =============
 
+![Latest Stable Version](https://img.shields.io/packagist/v/cinghie/yii2-menu.svg)
+![License](https://img.shields.io/packagist/l/cinghie/yii2-menu.svg)
+![Latest Release Date](https://img.shields.io/github/release-date/cinghie/yii2-menu.svg)
+![Latest Commit](https://img.shields.io/github/last-commit/cinghie/yii2-menu.svg)
+[![Total Downloads](https://img.shields.io/packagist/dt/cinghie/yii2-menu.svg)](https://packagist.org/packages/cinghie/yii2-menu)
+
 Yii2 Menu to create, manage, and delete menù in a Yii2 site
 
 Installation

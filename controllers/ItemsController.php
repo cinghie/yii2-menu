@@ -12,6 +12,7 @@
 
 namespace cinghie\menu\controllers;
 
+use RuntimeException;
 use Throwable;
 use Yii;
 use cinghie\menu\models\Items;
@@ -24,19 +25,19 @@ use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
+/**
+ * Class ItemsController
+ */
 class ItemsController extends Controller
 {
-
 	/**
 	 * @inheritdoc
-	 *
-	 * @return array
 	 */
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -44,12 +45,12 @@ class ItemsController extends Controller
                         'roles' => $this->module->menuRoles
                     ],
                 ],
-                'denyCallback' => function () {
-                    throw new ForbiddenHttpException;
+                'denyCallback' => static function () {
+	                throw new RuntimeException(Yii::t('traits','You are not allowed to access this page'));
                 }
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'activemultiple' => ['POST'],
                     'changestate' => ['POST'],
@@ -244,7 +245,7 @@ class ItemsController extends Controller
             Yii::$app->getSession()->setFlash('success', Yii::t('menu', 'Menu Item actived'));
         }
 
-        return $this->redirect(['index']);
+	    return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**
@@ -322,5 +323,4 @@ class ItemsController extends Controller
 
 	    throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

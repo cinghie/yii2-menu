@@ -13,12 +13,14 @@
 namespace cinghie\menu;
 
 use Yii;
+use yii\base\Module;
+use yii\i18n\PhpMessageSource;
 
-class Menu extends \yii\base\Module
+/**
+ * Class Menu
+ */
+class Menu extends Module
 {
-    // Controller Namespace
-    public $controllerNamespace = 'cinghie\menu\controllers';
-
     // Menu Rules
     public $menuRoles = ['admin'];
     
@@ -40,8 +42,9 @@ class Menu extends \yii\base\Module
      */
     public function init()
     {
+	    $this->registerTranslations();
+
         parent::init();
-        $this->registerTranslations();
     }
 
     /**
@@ -52,10 +55,9 @@ class Menu extends \yii\base\Module
         if (!isset(Yii::$app->i18n->translations['menu*']))
         {
             Yii::$app->i18n->translations['menu*'] = [
-                'class' => 'yii\i18n\PhpMessageSource',
+                'class' => PhpMessageSource::class,
                 'basePath' => __DIR__ . '/messages',
             ];
         }
     }
-
 }

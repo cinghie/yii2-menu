@@ -61,7 +61,7 @@ use kartik\widgets\Select2;
 
                             <div class="col-lg-6">
 
-	                            <?= $form->field($model, 'theme')->widget(Select2::className(), [
+	                            <?= $form->field($model, 'theme')->widget(Select2::class, [
 		                            'data' => $model->getThemeSelect2(),
 		                            'addon' => [
 			                            'prepend' => [

@@ -25,5 +25,8 @@
 	    "psr-4": {
 		    "cinghie\\menu\\": ""
 	    }
+    },
+    "extra": {
+        "bootstrap": "cinghie\\menu\\Bootstrap"
     }
 }

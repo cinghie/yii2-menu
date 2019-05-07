@@ -56,6 +56,51 @@ Set on your configuration file
 ]	
 ```
 
+## Override
+
+Override controller example, on model config
+
+```
+'modules' => [ 
+	'menu' => [
+		'class' => 'cinghie\menu\Menu',
+		'controllerMap' => [
+			'items' => 'app\controllers\ItemsController',
+			'types' => 'app\controllers\TypessController',
+		]
+	]
+],
+```
+
+Override models example, on model config
+
+```
+'modules' => [ 
+	'menu' => [
+		'class' => 'cinghie\menu\Menu',
+		'modelMap' => [
+			'Items' => 'app\models\menu\Items',
+			'Types' => 'app\models\menu\Types',
+		]
+	]
+],
+```
+
+Override view example
+
+```
+'components' => [ 
+	'view' => [
+		'theme' => [
+			'pathMap' => [
+				'@cinghie/menu/views/items' => '@app/views/menu/items',
+				'@cinghie/menu/views/types' => '@app/views/menu/types',
+			],
+		],
+	],
+],
+```
+
 URL
 --------------
 <ul> 

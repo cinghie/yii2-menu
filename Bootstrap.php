@@ -10,7 +10,7 @@
  * @version 0.9.5
  */
 
-namespace cinghie\articles;
+namespace cinghie\menu;
 
 use Yii;
 use cinghie\menu\models\Types;

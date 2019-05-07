@@ -56,7 +56,7 @@ Set on your configuration file
 ]	
 ```
 
-## Override
+## Overrides
 
 Override controller example, on model config
 

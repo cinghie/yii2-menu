@@ -58,24 +58,27 @@ Set on your configuration file
 
 ## Overrides
 
-Override controller example, on model config
+Override controller example, on modules config
 
 ```
 'modules' => [ 
+
 	'menu' => [
 		'class' => 'cinghie\menu\Menu',
 		'controllerMap' => [
 			'items' => 'app\controllers\ItemsController',
-			'types' => 'app\controllers\TypessController',
+			'types' => 'app\controllers\TypesController',
 		]
 	]
+	
 ],
 ```
 
-Override models example, on model config
+Override models example, on modules config
 
 ```
 'modules' => [ 
+
 	'menu' => [
 		'class' => 'cinghie\menu\Menu',
 		'modelMap' => [
@@ -83,13 +86,15 @@ Override models example, on model config
 			'Types' => 'app\models\menu\Types',
 		]
 	]
+	
 ],
 ```
 
-Override view example
+Override view example, on components config
 
 ```
 'components' => [ 
+
 	'view' => [
 		'theme' => [
 			'pathMap' => [
@@ -98,25 +103,15 @@ Override view example
 			],
 		],
 	],
+	
 ],
 ```
 
-URL
+URLS
 --------------
 <ul> 
   <li>Menù Types: PathToApp/index.php?r=menu/types/index</li>
   <li>Menù Types with Pretty Urls: PathToApp/menu/types/index</li>
   <li>Menù Items: PathToApp/index.php?r=menu/items/index</li>
   <li>Menù Items with Pretty Urls: PathToApp/menu/items/index</li>
-</ul>
-
-Libraries Needed
---------------
-
-<ul> 
-  <li>cocur/slugify: https://github.com/cocur/slugify</li>
-  <li>Yii2 Grid: https://github.com/kartik-v/yii2-grid</li>
-  <li>Yii2 Multilanguage: https://github.com/cinghie/yii2-multilanguage</li>
-  <li>Yii2 Traits: https://github.com/cinghie/yii2-traits</li></li>
-  <li>Yii2 Widgets: https://github.com/kartik-v/yii2-widgets</li>
 </ul>

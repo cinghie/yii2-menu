@@ -15,6 +15,7 @@ namespace cinghie\menu;
 use Yii;
 use cinghie\menu\models\Types;
 use cinghie\menu\models\Items;
+use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Module;
 use yii\db\ActiveRecord;
@@ -32,9 +33,9 @@ class Bootstrap implements BootstrapInterface
         'Types' => Types::class,
     ];
 
-    /**
-     * @inheritdoc
-     */
+	/**
+	 * @param Application $app
+	 */
     public function bootstrap($app)
     {
         /**

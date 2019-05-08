@@ -23,6 +23,9 @@ class Menu extends Module
 {
     // Menu Rules
     public $menuRoles = ['admin'];
+
+	// Model map
+	public $modelMap = [];
     
     // Slugify Options
     public $slugifyOptions = [

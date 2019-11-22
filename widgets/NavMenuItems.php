@@ -7,7 +7,7 @@
  * @github https://github.com/cinghie/yii2-menu
  * @license GNU GENERAL PUBLIC LICENSE VERSION 3
  * @package yii2-menu
- * @version 0.9.5
+ * @version 0.9.6
  */
 
 namespace cinghie\menu\widgets;

@@ -12,9 +12,11 @@
 
 use cinghie\traits\migrations\Migration;
 
+/**
+ * Class m160103_115804_add_icon_to_menu_items
+ */
 class m160103_115804_add_icon_to_menu_items extends Migration
 {
-
 	/**
 	 * @inheritdoc
 	 */
@@ -32,5 +34,4 @@ class m160103_115804_add_icon_to_menu_items extends Migration
 	    $this->dropColumn('{{%menu_items}}','icon');
 	    $this->dropColumn('{{%menu_items}}','icon_type');
     }
-
 }

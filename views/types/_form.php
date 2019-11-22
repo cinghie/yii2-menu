@@ -1,9 +1,10 @@
 <?php
 
 /**
- * @var \cinghie\menu\models\Types $model
+ * @var Types $model
  */
 
+use cinghie\menu\models\Types;
 use kartik\widgets\ActiveForm;
 use kartik\widgets\Select2;
 

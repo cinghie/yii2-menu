@@ -12,9 +12,11 @@
 
 use cinghie\traits\migrations\Migration;
 
+/**
+ * Class m160103_115803_add_class_to_menu_items
+ */
 class m160103_115803_add_class_to_menu_items extends Migration
 {
-
 	/**
 	 * @inheritdoc
 	 */
@@ -30,5 +32,4 @@ class m160103_115803_add_class_to_menu_items extends Migration
     {
 	    $this->dropColumn('{{%menu_items}}','class');
     }
-
 }

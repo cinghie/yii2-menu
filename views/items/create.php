@@ -1,9 +1,10 @@
 <?php
 
 /**
- * @var \cinghie\menu\models\Items $model
+ * @var Items $model
  */
 
+use cinghie\menu\models\Items;
 use yii\helpers\Html;
 
 $this->title = Yii::t('menu', 'Create Menu Items');

@@ -21,7 +21,6 @@ use yii\db\ActiveQuery;
  */
 class TypesQuery extends ActiveQuery
 {
-
     /**
      * @inheritdoc
      *
@@ -41,5 +40,4 @@ class TypesQuery extends ActiveQuery
     {
         return parent::one($db);
     }
-
 }

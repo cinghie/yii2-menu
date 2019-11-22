@@ -1,12 +1,13 @@
 <?php
 
 /**
- * @var \cinghie\menu\models\Items $model
+ * @var Items $model
  */
 
+use cinghie\iconpicker\Iconpicker;
+use cinghie\menu\models\Items;
 use kartik\widgets\ActiveForm;
 use kartik\widgets\Select2;
-use cinghie\iconpicker\Iconpicker;
 
 ?>
 

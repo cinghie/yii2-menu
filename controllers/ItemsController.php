@@ -91,7 +91,7 @@ class ItemsController extends Controller
         $model = new Items();
 	    $post = Yii::$app->request->post();
 
-        if ( $model->load($post) )
+        if($model->load($post))
         {
             // If alias is not set, generate it
 	        $model->setAlias($post['Items'],'title');

@@ -285,5 +285,4 @@ class NavMenuItems extends Widget
             'encodeLabels' => false,
         ]);
     }
-
 }

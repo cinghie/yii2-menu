@@ -20,8 +20,6 @@ use cinghie\traits\StateTrait;
 use cinghie\traits\TitleAliasTrait;
 use cinghie\traits\UserHelpersTrait;
 use cinghie\traits\ViewsHelpersTrait;
-use yii\base\InvalidConfigException;
-use yii\base\InvalidParamException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -39,13 +37,14 @@ use yii\db\ActiveRecord;
  *
  * @property ActiveQuery $menuitems
  * @property ActiveQuery $types
+ *
  * @property Types $menutype
+ * @property string $menuLabel
  * @property array[] $itemsSelect2
  * @property array[] $typesSelect2
  */
 class Items extends ActiveRecord
 {
-
     use AccessTrait, LanguageTrait, ParentTrait, TitleAliasTrait, StateTrait, UserHelpersTrait, ViewsHelpersTrait;
 
     /**
@@ -67,7 +66,7 @@ class Items extends ActiveRecord
             [['class'], 'string', 'max' => 24],
             [['icon'], 'string', 'max' => 32],
             [['link'], 'string', 'max' => 1024],
-	        [['params','linkOptions'], 'string'],
+            [['params','linkOptions'], 'string'],
             [['menutype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['menutype_id' => 'id']],
         ]);
     }
@@ -92,13 +91,13 @@ class Items extends ActiveRecord
     /**
      * {@inheritdoc}
      *
-     * @throws InvalidParamException
-     * @throws InvalidConfigException
+     * @param $insert
+     *
+     * @return bool
      */
     public function beforeSave($insert)
     {
-
-        if($this->parent_id == 0){
+        if($this->parent_id === 0){
             $this->parent_id = NULL;
         }
 
@@ -175,7 +174,7 @@ class Items extends ActiveRecord
     public function getItemsSelect2()
     {
         $menuItems = $this->getMenuitems();
-        $array[0] = '** ' .Yii::t('menu','None') .' **';
+        $array[0] = '** ' .Yii::t('traits','None') .' **';
 
 	    /** @var array $menuItems */
 	    foreach($menuItems as $menuItem)
@@ -199,5 +198,4 @@ class Items extends ActiveRecord
     {
         return new ItemsQuery(static::class);
     }
-
 }

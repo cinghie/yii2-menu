@@ -86,12 +86,22 @@ class TypesController extends Controller
     {
         $model = new Types();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save())
+        if ($model->load(Yii::$app->request->post()))
         {
-            // Set Success Message
-            Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been created'));
+            if($model->save())
+            {
+                // Set Success Message
+                Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been created'));
 
-            return $this->redirect(['index']);
+                return $this->redirect(['index']);
+            }
+
+            // Set Error Message
+            Yii::$app->session->setFlash('error', Yii::t('menu', 'Menu Type could not be saved'));
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
 
 	    return $this->render('create', [
@@ -113,13 +123,22 @@ class TypesController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()))
+        {
+            if($model->save())
+            {
+                // Set Success Message
+                Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been updated'));
 
-            // Set Success Message
-            Yii::$app->session->setFlash('success', Yii::t('menu', 'Menu Type has been updated'));
+                return $this->redirect(['index']);
+            }
 
-            return $this->redirect(['index']);
+            // Set Error Message
+            Yii::$app->session->setFlash('error', Yii::t('menu', 'Menu Type could not be saved'));
 
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
 
 	    return $this->render('update', [

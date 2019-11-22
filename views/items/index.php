@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @var \cinghie\menu\models\Items $model
- * @var \cinghie\menu\models\ItemsSearch $searchModel
+ * @var Items $model
+ * @var ItemsSearch $searchModel
  */
 
+use cinghie\menu\models\Items;
+use cinghie\menu\models\ItemsSearch;
 use kartik\grid\CheckboxColumn;
 use kartik\grid\GridView;
 use yii\helpers\Html;

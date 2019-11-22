@@ -12,9 +12,11 @@
 
 use cinghie\traits\migrations\Migration;
 
+/**
+ * Class m160103_115801_create_menu_types
+ */
 class m160103_115801_create_menu_types extends Migration
 {
-
 	/**
 	 * @inheritdoc
 	 */
@@ -44,5 +46,4 @@ class m160103_115801_create_menu_types extends Migration
     {
         $this->dropTable('{{%menu_types}}');
     }
-
 }

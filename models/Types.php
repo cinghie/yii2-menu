@@ -25,10 +25,12 @@ use yii\db\ActiveRecord;
  * @property string $id
  * @property string $menutype
  * @property string $description
+ *
+ * @property array $themeSelect2
+ * @property string $themeClass
  */
 class Types extends ActiveRecord
 {
-
     use TitleAliasTrait, StateTrait, UserHelpersTrait, ViewsHelpersTrait;
 
     /**
@@ -101,5 +103,4 @@ class Types extends ActiveRecord
     {
         return new TypesQuery(static::class);
     }
-
 }

@@ -20,6 +20,8 @@ use cinghie\traits\StateTrait;
 use cinghie\traits\TitleAliasTrait;
 use cinghie\traits\UserHelpersTrait;
 use cinghie\traits\ViewsHelpersTrait;
+use yii\base\InvalidConfigException;
+use yii\base\InvalidParamException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -85,6 +87,22 @@ class Items extends ActiveRecord
 	        'linkOptions' => Yii::t('menu', 'Link Options'),
 	        'params' => Yii::t('traits', 'Params'),
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws InvalidParamException
+     * @throws InvalidConfigException
+     */
+    public function beforeSave($insert)
+    {
+
+        if($this->parent_id == 0){
+            $this->parent_id = NULL;
+        }
+
+        return parent::beforeSave($insert);
     }
 
 	/**
@@ -157,7 +175,7 @@ class Items extends ActiveRecord
     public function getItemsSelect2()
     {
         $menuItems = $this->getMenuitems();
-        $array = array();
+        $array[0] = '** ' .Yii::t('menu','None') .' **';
 
 	    /** @var array $menuItems */
 	    foreach($menuItems as $menuItem)
